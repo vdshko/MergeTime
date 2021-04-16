@@ -13,6 +13,7 @@
 		A106B4A32629D47000F82551 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A106B4A12629D47000F82551 /* Main.storyboard */; };
 		A106B4A52629D47100F82551 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A106B4A42629D47100F82551 /* Assets.xcassets */; };
 		A106B4A82629D47100F82551 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A106B4A62629D47100F82551 /* LaunchScreen.storyboard */; };
+		CF18274B42C549CC1BF499ED /* Pods_MergeTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E753ABD5CD669554DBFC620E /* Pods_MergeTime.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,9 @@
 		A106B4A42629D47100F82551 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A106B4A72629D47100F82551 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A106B4A92629D47100F82551 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B18DE3B2910B2F8CCD0646BC /* Pods-MergeTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MergeTime.debug.xcconfig"; path = "Target Support Files/Pods-MergeTime/Pods-MergeTime.debug.xcconfig"; sourceTree = "<group>"; };
+		E753ABD5CD669554DBFC620E /* Pods_MergeTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MergeTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E963D48F44EB47AC5C2A7440 /* Pods-MergeTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MergeTime.release.xcconfig"; path = "Target Support Files/Pods-MergeTime/Pods-MergeTime.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF18274B42C549CC1BF499ED /* Pods_MergeTime.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C08D04FD09570D91DBE2AE6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B18DE3B2910B2F8CCD0646BC /* Pods-MergeTime.debug.xcconfig */,
+				E963D48F44EB47AC5C2A7440 /* Pods-MergeTime.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		A106B48F2629D47000F82551 = {
 			isa = PBXGroup;
 			children = (
 				A106B49A2629D47000F82551 /* MergeTime */,
 				A106B4992629D47000F82551 /* Products */,
+				8C08D04FD09570D91DBE2AE6 /* Pods */,
+				D4CA155485FCF5215B1BDECB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +84,14 @@
 			path = MergeTime;
 			sourceTree = "<group>";
 		};
+		D4CA155485FCF5215B1BDECB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E753ABD5CD669554DBFC620E /* Pods_MergeTime.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A106B4AC2629D47100F82551 /* Build configuration list for PBXNativeTarget "MergeTime" */;
 			buildPhases = (
+				1C44C33A8896025B4E08B81B /* [CP] Check Pods Manifest.lock */,
 				A106B4942629D47000F82551 /* Sources */,
 				A106B4952629D47000F82551 /* Frameworks */,
 				A106B4962629D47000F82551 /* Resources */,
+				B6EE0C18AAFC845739536343 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -131,6 +158,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1C44C33A8896025B4E08B81B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MergeTime-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B6EE0C18AAFC845739536343 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MergeTime/Pods-MergeTime-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MergeTime/Pods-MergeTime-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MergeTime/Pods-MergeTime-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A106B4942629D47000F82551 /* Sources */ = {
@@ -283,6 +352,7 @@
 		};
 		A106B4AD2629D47100F82551 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B18DE3B2910B2F8CCD0646BC /* Pods-MergeTime.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -302,6 +372,7 @@
 		};
 		A106B4AE2629D47100F82551 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E963D48F44EB47AC5C2A7440 /* Pods-MergeTime.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
