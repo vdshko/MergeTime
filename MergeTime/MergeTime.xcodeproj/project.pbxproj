@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,6 +25,7 @@
 		A106B4A42629D47100F82551 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A106B4A72629D47100F82551 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A106B4A92629D47100F82551 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A106B4BD262A090C00F82551 /* run_swiftlint.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = run_swiftlint.sh; sourceTree = "<group>"; };
 		B18DE3B2910B2F8CCD0646BC /* Pods-MergeTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MergeTime.debug.xcconfig"; path = "Target Support Files/Pods-MergeTime/Pods-MergeTime.debug.xcconfig"; sourceTree = "<group>"; };
 		E753ABD5CD669554DBFC620E /* Pods_MergeTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MergeTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E963D48F44EB47AC5C2A7440 /* Pods-MergeTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MergeTime.release.xcconfig"; path = "Target Support Files/Pods-MergeTime/Pods-MergeTime.release.xcconfig"; sourceTree = "<group>"; };
@@ -48,17 +49,17 @@
 				B18DE3B2910B2F8CCD0646BC /* Pods-MergeTime.debug.xcconfig */,
 				E963D48F44EB47AC5C2A7440 /* Pods-MergeTime.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 		A106B48F2629D47000F82551 = {
 			isa = PBXGroup;
 			children = (
-				A106B49A2629D47000F82551 /* MergeTime */,
-				A106B4992629D47000F82551 /* Products */,
-				8C08D04FD09570D91DBE2AE6 /* Pods */,
 				D4CA155485FCF5215B1BDECB /* Frameworks */,
+				A106B49A2629D47000F82551 /* MergeTime */,
+				8C08D04FD09570D91DBE2AE6 /* Pods */,
+				A106B4992629D47000F82551 /* Products */,
+				A106B4BC262A015700F82551 /* Scripts */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,6 +85,14 @@
 			path = MergeTime;
 			sourceTree = "<group>";
 		};
+		A106B4BC262A015700F82551 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				A106B4BD262A090C00F82551 /* run_swiftlint.sh */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
 		D4CA155485FCF5215B1BDECB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +110,7 @@
 			buildPhases = (
 				1C44C33A8896025B4E08B81B /* [CP] Check Pods Manifest.lock */,
 				A106B4942629D47000F82551 /* Sources */,
+				A106B4BB2629DCC000F82551 /* swiftlint */,
 				A106B4952629D47000F82551 /* Frameworks */,
 				A106B4962629D47000F82551 /* Resources */,
 				B6EE0C18AAFC845739536343 /* [CP] Embed Pods Frameworks */,
@@ -181,6 +191,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		A106B4BB2629DCC000F82551 /* swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$SRCROOT/Scripts/run_swiftlint.sh\n";
 		};
 		B6EE0C18AAFC845739536343 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -2,14 +2,17 @@ platform :ios, '12.0'
 use_frameworks!
 
 def rx_swift
-
-    # rx support; https://github.com/ReactiveX/RxSwift
-    pod 'RxSwift', '5.1.1'
-    # rx support for UI; https://github.com/ReactiveX/RxSwift
-    pod 'RxCocoa', '5.1.1'
+  
+  # rx support; https://github.com/ReactiveX/RxSwift
+  pod 'RxSwift', '5.1.1'
+  # rx support for UI; https://github.com/ReactiveX/RxSwift
+  pod 'RxCocoa', '5.1.1'
 end
 
 target 'MergeTime' do
-
-    rx_swift
+  
+  # swiftlint; https://github.com/realm/SwiftLint
+  pod 'SwiftLint', '0.41'
+  
+  rx_swift
 end
