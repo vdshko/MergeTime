@@ -1,0 +1,9 @@
+//
+//  Development-Release.xcconfig
+//  MergeTime
+//
+//  Created by Vlad Shkodich on 17.04.2021.
+//
+
+#include "../Common/Development.xcconfig"
+#include "../Base/Release.xcconfig"

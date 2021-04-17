@@ -1,0 +1,10 @@
+//
+//  Production.xcconfig
+//  MergeTime
+//
+//  Created by Vlad Shkodich on 17.04.2021.
+//
+
+#include "../Base/Core.xcconfig"
+
+_ENVIRONMENT = PRODUCTION

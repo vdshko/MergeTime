@@ -1,0 +1,24 @@
+//
+//  Core.xcconfig
+//  MergeTime
+//
+//  Created by Vlad Shkodich on 17.04.2021.
+//
+
+SWIFT_VERSION = 5.0
+IPHONEOS_DEPLOYMENT_TARGET = 12.0
+
+PRODUCT_NAME = $(TARGET_NAME)
+
+VERSIONING_SYSTEM = apple-generic
+
+// code signing
+CODE_SIGN_STYLE = Automatic
+
+_ENVIRONMENT =
+
+// Values used in SWIFT_ACTIVE_COMPILATION_CONDITIONS
+BUILD_COMPILATION_CONDITIONS = BUILD_ENV_$(_ENVIRONMENT)
+
+// Config.plist name based on the BUILD_ENV lowercase. Therefore DEVELOPMENT -> Config.development.plist
+CONFIG_FILE = Config.${_ENVIRONMENT:lower}.plist

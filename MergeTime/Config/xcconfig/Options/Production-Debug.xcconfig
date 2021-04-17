@@ -1,0 +1,9 @@
+//
+//  Production-Debug.xcconfig
+//  MergeTime
+//
+//  Created by Vlad Shkodich on 17.04.2021.
+//
+
+#include "../Common/Production.xcconfig"
+#include "../Base/Debug.xcconfig"

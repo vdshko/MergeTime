@@ -1,0 +1,16 @@
+//
+//  Debug.xcconfig
+//  MergeTime
+//
+//  Created by Vlad Shkodich on 17.04.2021.
+//
+
+#include "../Accounts/OwnAccount.xcconfig"
+
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) DEBUG $(BUILD_COMPILATION_CONDITIONS)
+
+ONLY_ACTIVE_ARCH = YES
+
+DEBUG_INFORMATION_FORMAT=dwarf
+
+GCC_PREPROCESSOR_DEFINITIONS = DEBUG=1 $(inherited)
