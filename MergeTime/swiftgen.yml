@@ -1,0 +1,38 @@
+xcassets:
+  - inputs:
+    - Resources/Supporting Files/xcassets/Assets.xcassets
+    outputs:
+      templatePath: Resources/Supporting Files/Swiftgen/Stencils/xcassets
+      output: Resources/Supporting Files/Swiftgen/Assets.swift
+      params:
+        publicAccess: true
+  - inputs:
+    - MergeTime/Supporting Files/Resources/xcassets/AppAssets.xcassets
+    outputs:
+      templatePath: Resources/Supporting Files/Swiftgen/Stencils/xcassets
+      output: MergeTime/Supporting Files/Resources/Swiftgen/Assets.swift
+      params:
+        publicAccess: true
+  - inputs:
+    - UI/Supporting Files/Resources/xcassets/Assets.xcassets
+    outputs:
+      templatePath: Resources/Supporting Files/Swiftgen/Stencils/xcassets
+      output: UI/Supporting Files/Resources/Swiftgen/Assets.swift
+      params:
+        publicAccess: true
+  - inputs:
+    - Module/Supporting Files/Resources/xcassets/Assets.xcassets
+    outputs:
+      templatePath: Resources/Supporting Files/Swiftgen/Stencils/xcassets
+      output: Module/Supporting Files/Resources/Swiftgen/Assets.swift
+      params:
+        publicAccess: true
+
+strings:
+  - inputs:
+    - Resources/Supporting Files/Localization/en.lproj/Localizable.strings
+    outputs:
+      output: Resources/Supporting Files/Swiftgen/Strings.swift
+      templatePath: Resources/Supporting Files/Swiftgen/Stencils/strings
+      params:
+        publicAccess: true

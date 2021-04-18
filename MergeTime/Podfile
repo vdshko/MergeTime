@@ -27,6 +27,12 @@ target 'Module' do
   rx_swift
 end
 
+target 'Resources' do
+
+  # swiftgen; https://github.com/SwiftGen/SwiftGen
+  pod 'SwiftGen', '6.4.0'
+end
+  
 post_install do |installer|
   # enables bitcode for each pod (required for some deps)
   installer.pods_project.targets.each do |target|
