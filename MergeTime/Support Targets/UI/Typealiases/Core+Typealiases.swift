@@ -15,3 +15,4 @@ public typealias Asset = Core.Asset
 public typealias L10n = Core.L10n
 public typealias ImageAsset = Core.ImageAsset
 public typealias ColorAsset = Core.ColorAsset
+public typealias Typography = Core.Typography
