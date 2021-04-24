@@ -1,6 +1,6 @@
 //
 //  UIViewController+DisposeBag.swift
-//  UI
+//  Core
 //
 //  Created by Vlad Shkodich on 24.04.2021.
 //

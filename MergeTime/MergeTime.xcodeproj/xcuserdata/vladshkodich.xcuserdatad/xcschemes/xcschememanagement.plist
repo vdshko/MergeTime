@@ -4,6 +4,13 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Core.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>19</integer>
+		</dict>
 		<key>DebugTools.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>isShown</key>
@@ -16,7 +23,7 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>17</integer>
+			<integer>6</integer>
 		</dict>
 		<key>MergeTime-Development.xcscheme_^#shared#^_</key>
 		<dict>
@@ -61,6 +68,11 @@
 			<true/>
 		</dict>
 		<key>A109C38D262BB0BB0029B661</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A1312B952634490600F3C9B4</key>
 		<dict>
 			<key>primary</key>
 			<true/>

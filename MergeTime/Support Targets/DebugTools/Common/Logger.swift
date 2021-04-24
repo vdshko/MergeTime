@@ -62,7 +62,6 @@ extension Logger {
     public static func warn(_ string: @autoclosure () -> String, file: String = #file, line: Int = #line) {
         log(.warn, string, file: file, line: line)
     }
-    
 }
 
 // MARK: - Errors
