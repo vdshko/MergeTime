@@ -1,38 +1,48 @@
 xcassets:
   - inputs:
-    - Support Targets/Resources/Supporting Files/xcassets/Assets.xcassets
+    - Support Targets/Resources/xcassets/Assets.xcassets
+    - Support Targets/Resources/xcassets/Colors.xcassets
     outputs:
-      templatePath: Support Targets/Resources/Supporting Files/Swiftgen/Stencils/xcassets
-      output: Support Targets/Resources/Supporting Files/Swiftgen/Assets.swift
+      templatePath: Support Targets/Resources/Swiftgen/Stencils/xcassets
+      output: Support Targets/Resources/Swiftgen/Assets.swift
       params:
         publicAccess: true
   - inputs:
     - MergeTime/Supporting Files/Resources/xcassets/AppAssets.xcassets
     outputs:
-      templatePath: Support Targets/Resources/Supporting Files/Swiftgen/Stencils/xcassets
+      templatePath: Support Targets/Resources/Swiftgen/Stencils/xcassets
       output: MergeTime/Supporting Files/Resources/Swiftgen/Assets.swift
       params:
         publicAccess: true
   - inputs:
     - Support Targets/UI/Supporting Files/Resources/xcassets/Assets.xcassets
     outputs:
-      templatePath: Support Targets/Resources/Supporting Files/Swiftgen/Stencils/xcassets
+      templatePath: Support Targets/Resources/Swiftgen/Stencils/xcassets
       output: Support Targets/UI/Supporting Files/Resources/Swiftgen/Assets.swift
       params:
         publicAccess: true
   - inputs:
     - Support Targets/ItemModules/Supporting Files/Resources/xcassets/Assets.xcassets
     outputs:
-      templatePath: Support Targets/Resources/Supporting Files/Swiftgen/Stencils/xcassets
+      templatePath: Support Targets/Resources/Swiftgen/Stencils/xcassets
       output: Support Targets/ItemModules/Supporting Files/Resources/Swiftgen/Assets.swift
       params:
         publicAccess: true
 
 strings:
   - inputs:
-    - Support Targets/Resources/Supporting Files/Localization/en.lproj/Localizable.strings
+    - Support Targets/Resources/Localization/en.lproj/Localizable.strings
     outputs:
-      output: Support Targets/Resources/Supporting Files/Swiftgen/Strings.swift
-      templatePath: Support Targets/Resources/Supporting Files/Swiftgen/Stencils/strings
+      output: Support Targets/Resources/Swiftgen/Strings.swift
+      templatePath: Support Targets/Resources/Swiftgen/Stencils/strings
+      params:
+        publicAccess: true
+
+fonts:
+  - inputs:
+    - Support Targets/Resources/Fonts
+    outputs:
+      output: Support Targets/Resources/Swiftgen/Fonts.swift
+      templateName: swift5
       params:
         publicAccess: true
