@@ -4,6 +4,20 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>DebugTools.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>ItemModules.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>17</integer>
+		</dict>
 		<key>MergeTime-Development.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -19,17 +33,12 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
-		<key>Module.xcscheme_^#shared#^_</key>
+		<key>Resources.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>4</integer>
-		</dict>
-		<key>Resources.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>14</integer>
+			<integer>5</integer>
 		</dict>
 		<key>UI.xcscheme_^#shared#^_</key>
 		<dict>
@@ -52,6 +61,21 @@
 			<true/>
 		</dict>
 		<key>A109C38D262BB0BB0029B661</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A15E420F262C68E30074980D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A1EC12722633814C0076743A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A1EC12FC263384420076743A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

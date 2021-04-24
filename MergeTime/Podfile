@@ -9,12 +9,21 @@ def rx_swift
   pod 'RxCocoa', '5.1.1'
 end
 
+def swinject
+  
+  # DI; https://github.com/Swinject/Swinject
+  pod 'Swinject', '2.7.1'
+  # https://github.com/Swinject/SwinjectAutoregistration
+  pod 'SwinjectAutoregistration', '2.7.0'
+end
+
 target 'MergeTime' do
   
   # swiftlint; https://github.com/realm/SwiftLint
   pod 'SwiftLint', '0.41'
   
   rx_swift
+  swinject
 end
 
 target 'UI' do
@@ -22,9 +31,10 @@ target 'UI' do
   rx_swift
 end
 
-target 'Module' do
+target 'ItemModules' do
   
   rx_swift
+  swinject
 end
 
 target 'Resources' do

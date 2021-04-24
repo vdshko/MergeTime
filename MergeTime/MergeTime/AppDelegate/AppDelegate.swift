@@ -7,24 +7,40 @@
 
 import UIKit
 
+protocol AppService: class {}
+
+typealias AppDelegateService = AppService & UIApplicationDelegate
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
-    
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        setupTestFirstScreen()
+    var window: UIWindow? {
+        get {
+            for service in services {
+                if let window = service.window {
+                    return window
+                }
+            }
+            
+            return nil
+        }
         
-        return true
+        set {}
     }
     
-    // TBD: remove after finish setup
+    let services: [AppDelegateService]
     
-    private func setupTestFirstScreen() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = controller
-        window?.makeKeyAndVisible()
+    override init() {
+        services = [
+            ApplicationFlowService()
+        ]
+        
+        super.init()
+    }
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        return services.allSatisfy {
+            $0.application?(application, didFinishLaunchingWithOptions: launchOptions) ?? true
+        }
     }
 }

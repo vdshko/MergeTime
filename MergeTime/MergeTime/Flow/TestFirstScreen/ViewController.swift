@@ -12,6 +12,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("\(Configuration.default.name)")
+        Logger.test("\(Configuration.default.name)")
     }
 }

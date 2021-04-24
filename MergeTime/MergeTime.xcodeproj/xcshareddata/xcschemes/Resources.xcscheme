@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A109C38D262BB0BB0029B661"
-               BuildableName = "Module.framework"
-               BlueprintName = "Module"
+               BlueprintIdentifier = "A15E420F262C68E30074980D"
+               BuildableName = "Resources.framework"
+               BlueprintName = "Resources"
                ReferencedContainer = "container:MergeTime.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -50,9 +50,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A109C38D262BB0BB0029B661"
-            BuildableName = "Module.framework"
-            BlueprintName = "Module"
+            BlueprintIdentifier = "A15E420F262C68E30074980D"
+            BuildableName = "Resources.framework"
+            BlueprintName = "Resources"
             ReferencedContainer = "container:MergeTime.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

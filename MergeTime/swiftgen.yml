@@ -21,10 +21,10 @@ xcassets:
       params:
         publicAccess: true
   - inputs:
-    - Module/Supporting Files/Resources/xcassets/Assets.xcassets
+    - ItemModules/Supporting Files/Resources/xcassets/Assets.xcassets
     outputs:
       templatePath: Resources/Supporting Files/Swiftgen/Stencils/xcassets
-      output: Module/Supporting Files/Resources/Swiftgen/Assets.swift
+      output: ItemModules/Supporting Files/Resources/Swiftgen/Assets.swift
       params:
         publicAccess: true
 
