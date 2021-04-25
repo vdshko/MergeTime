@@ -11,6 +11,8 @@
 // Deprecated typealiases
 @available(*, deprecated, renamed: "ColorAsset.Color", message: "This typealias will be removed in SwiftGen 7.0")
 public typealias AssetColorTypeAlias = ColorAsset.Color
+@available(*, deprecated, renamed: "ImageAsset.Image", message: "This typealias will be removed in SwiftGen 7.0")
+public typealias AssetImageTypeAlias = ImageAsset.Image
 
 // MARK: - Asset Catalogs
 
@@ -31,6 +33,11 @@ fileprivate extension ImageAsset {
 }
 extension Asset {
   public enum Assets {
+    public enum TapBar {
+      public static let account = ImageAsset(name: "TapBar/account")
+      public static let road = ImageAsset(name: "TapBar/road")
+      public static let storeroom = ImageAsset(name: "TapBar/storeroom")
+    }
   }
   public enum Colors {
     public enum Background {

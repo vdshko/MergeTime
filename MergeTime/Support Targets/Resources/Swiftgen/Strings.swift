@@ -1,7 +1,12 @@
 // swiftlint:disable all
 
 extension L10n {
-    // No string found
+  /// Account
+  public static let tabBarAccount = L10n.tr("Localizable", "tabBar.account")
+  /// Road
+  public static let tabBarRoad = L10n.tr("Localizable", "tabBar.road")
+  /// Storeroom
+  public static let tabBarStoreroom = L10n.tr("Localizable", "tabBar.storeroom")
 }
 
 private extension L10n {

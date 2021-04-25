@@ -28,7 +28,7 @@ fileprivate extension ImageAsset {
     }
 }
 extension Asset {
-  public enum Assets {
+  public enum ItemsAssets {
   }
 }
 

@@ -15,14 +15,7 @@ xcassets:
       params:
         publicAccess: true
   - inputs:
-    - Support Targets/UI/Supporting Files/Resources/xcassets/Assets.xcassets
-    outputs:
-      templatePath: Support Targets/Resources/Swiftgen/Stencils/xcassets
-      output: Support Targets/UI/Supporting Files/Resources/Swiftgen/Assets.swift
-      params:
-        publicAccess: true
-  - inputs:
-    - Support Targets/ItemModules/Supporting Files/Resources/xcassets/Assets.xcassets
+    - Support Targets/ItemModules/Supporting Files/Resources/xcassets/ItemsAssets.xcassets
     outputs:
       templatePath: Support Targets/Resources/Swiftgen/Stencils/xcassets
       output: Support Targets/ItemModules/Supporting Files/Resources/Swiftgen/Assets.swift

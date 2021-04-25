@@ -9,8 +9,8 @@ import UI
 
 // MARK: - Resources
 
-typealias Asset = UI.Asset
-typealias L10n = UI.L10n
-typealias ImageAsset = UI.ImageAsset
-typealias ColorAsset = UI.ColorAsset
-typealias Typography = UI.Typography
+public typealias Asset = UI.Asset
+public typealias L10n = UI.L10n
+public typealias ImageAsset = UI.ImageAsset
+public typealias ColorAsset = UI.ColorAsset
+public typealias Typography = UI.Typography
