@@ -12,6 +12,8 @@ PRODUCT_NAME = $(TARGET_NAME)
 
 VERSIONING_SYSTEM = apple-generic
 
+ENABLE_BITCODE = NO
+
 // code signing
 CODE_SIGN_STYLE = Automatic
 

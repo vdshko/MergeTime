@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol AppService: class {}
+protocol AppService: AnyObject {}
 
 typealias AppDelegateService = AppService & UIApplicationDelegate
 

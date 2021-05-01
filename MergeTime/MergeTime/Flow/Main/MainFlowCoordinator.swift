@@ -24,24 +24,18 @@ final class MainFlowCoordinator: NavigationFlowCoordinator {
     
     func createFlow() -> UIViewController {
         let controller: TabBarController = container.autoresolve()
-        controller.viewControllers = createViewControllers()
+        controller.viewControllers = TabBarController.Items.allCases.map { createViewController(for: $0) }
         controller.select(tab: .road)
         containerViewController = controller
         
         return controller
     }
     
-    private func createViewControllers() -> [UIViewController] {
-        return [setupTestFirstScreen(with: .red), setupTestFirstScreen(with: .green), setupTestFirstScreen(with: .brown)]
-    }
-    
-    // TBD: remove after finish setup
-    
-    private func setupTestFirstScreen(with backgroundColor: UIColor) -> UIViewController {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController
-        controller?.view.backgroundColor = backgroundColor
-        
-        return controller ?? UIViewController()
+    private func createViewController(for tab: TabBarController.Items) -> UIViewController {
+        switch tab {
+        case .storeroom: return (container.autoresolve(argument: self) as StoreroomFlowCoordinator).createFlow()
+        case .road: return (container.autoresolve(argument: self) as RoadFlowCoordinator).createFlow()
+        case .account: return (container.autoresolve(argument: self) as AccountFlowCoordinator).createFlow()
+        }
     }
 }

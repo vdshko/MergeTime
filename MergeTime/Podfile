@@ -4,9 +4,9 @@ use_frameworks!
 def rx_swift
   
   # rx support; https://github.com/ReactiveX/RxSwift
-  pod 'RxSwift', '5.1.1'
+  pod 'RxSwift', '5.1.1', :inhibit_warnings => true
   # rx support for UI; https://github.com/ReactiveX/RxSwift
-  pod 'RxCocoa', '5.1.1'
+  pod 'RxCocoa', '5.1.1', :inhibit_warnings => true
 end
 
 def swinject

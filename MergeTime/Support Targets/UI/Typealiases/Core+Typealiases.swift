@@ -8,6 +8,8 @@
 import Core
 
 public typealias NavigationController = Core.NavigationController
+public typealias NiblessView = Core.NiblessView
+public typealias ViewController = Core.ViewController
 
 // MARK: - Resources
 

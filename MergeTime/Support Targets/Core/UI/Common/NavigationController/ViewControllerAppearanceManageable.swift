@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol ViewControllerAppearanceManageable: class {
+public protocol ViewControllerAppearanceManageable: AnyObject {
     
     /// describes bar appearance; default is `black`
     var navigationBarAppearance: NavigationBarAppearance { get }

@@ -30,16 +30,22 @@ public final class TabBarController: UITabBarController {
     private func setupStyling() {
         UITabBar.appearance().shadowImage = UIImage()
         UITabBar.appearance().backgroundImage = UIImage()
-        tabBar.backgroundColor = Asset.Colors.Text.primary.color
+        tabBar.backgroundColor = Asset.Colors.Background.primary.color
         tabBar.layer.shadowOffset = CGSize(width: 0, height: 0)
         tabBar.layer.shadowRadius = 4
-        tabBar.layer.shadowColor = Asset.Colors.Text.primary.color.cgColorDynamic
         tabBar.layer.shadowOpacity = 1
+        tabBar.layer.shadowColor = Asset.Colors.Text.primary.color.cgColorDynamic
+    }
+    
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        tabBar.layer.shadowColor = Asset.Colors.Text.primary.color.cgColorDynamic
     }
     
     private func setupItems() {
-        tabBar.tintColor = Asset.Colors.Background.primary.color
-        tabBar.unselectedItemTintColor = Asset.Colors.Background.primary.color.withAlphaComponent(0.4)
+        tabBar.tintColor = Asset.Colors.Text.primary.color
+        tabBar.unselectedItemTintColor = Asset.Colors.Text.primary.color.withAlphaComponent(0.4)
         viewControllers?.enumerated().forEach { offset, controller in
             guard let tab = Items(rawValue: offset) else {
                 return

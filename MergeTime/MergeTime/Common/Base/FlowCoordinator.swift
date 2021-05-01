@@ -8,7 +8,7 @@
 import UIKit
 import class UI.NavigationController
 
-public protocol FlowCoordinator: class {
+public protocol FlowCoordinator: AnyObject {
     
     // this variable must only be of `weak` type
     var containerViewController: UIViewController? { get set }

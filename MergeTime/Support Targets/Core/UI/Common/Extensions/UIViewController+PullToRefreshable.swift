@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-public protocol PullToRefreshable: class {}
+public protocol PullToRefreshable: AnyObject {}
 
 public extension PullToRefreshable where Self: UIViewController {
     
