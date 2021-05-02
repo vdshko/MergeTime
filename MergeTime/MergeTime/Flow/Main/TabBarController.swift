@@ -23,8 +23,25 @@ public final class TabBarController: UITabBarController {
         didSet { setupItems() }
     }
     
+    public override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        guard let itemIndex = tabBar.items?.firstIndex(of: item),
+              itemIndex != selectedIndex else {
+            return
+        }
+        
+        tabBar.subviews
+            .filter { $0 is UIControl }[itemIndex]
+            .animate(with: .bounce)
+    }
+    
     public func select(tab: TabBarController.Items) {
         selectedIndex = tab.rawValue
+    }
+    
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        tabBar.layer.shadowColor = Asset.Colors.Text.primary.color.cgColorDynamic
     }
     
     private func setupStyling() {
@@ -34,12 +51,6 @@ public final class TabBarController: UITabBarController {
         tabBar.layer.shadowOffset = CGSize(width: 0, height: 0)
         tabBar.layer.shadowRadius = 4
         tabBar.layer.shadowOpacity = 1
-        tabBar.layer.shadowColor = Asset.Colors.Text.primary.color.cgColorDynamic
-    }
-    
-    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-
         tabBar.layer.shadowColor = Asset.Colors.Text.primary.color.cgColorDynamic
     }
     
