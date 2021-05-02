@@ -1,0 +1,12 @@
+//
+//  OwnAccount.xcconfig
+//  MergeTime
+//
+//  Created by Vlad Shkodich on 17.04.2021.
+//
+
+// Display app name
+DISPLAY_NAME = Merge Time
+
+// Bundle identifier
+PRODUCT_BUNDLE_IDENTIFIER = com.vdshko.projects.MergeTime

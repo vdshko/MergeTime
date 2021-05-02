@@ -4,10 +4,93 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>MergeTime.xcscheme_^#shared#^_</key>
+		<key>Core.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>19</integer>
+		</dict>
+		<key>DebugTools.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>ItemModules.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+		<key>MergeTime-Development.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>MergeTime-Production.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>MergeTime-QA.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Resources.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>UI.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>A106B4972629D47000F82551</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A109C363262BAF7C0029B661</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A109C38D262BB0BB0029B661</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A1312B952634490600F3C9B4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A15E420F262C68E30074980D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A1EC12722633814C0076743A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A1EC12FC263384420076743A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

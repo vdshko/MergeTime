@@ -1,0 +1,80 @@
+platform :ios, '12.0'
+use_frameworks!
+
+def rx_swift
+  
+  # rx support; https://github.com/ReactiveX/RxSwift
+  pod 'RxSwift', '5.1.1', :inhibit_warnings => true
+  # rx support for UI; https://github.com/ReactiveX/RxSwift
+  pod 'RxCocoa', '5.1.1', :inhibit_warnings => true
+end
+
+def swinject
+  
+  # DI; https://github.com/Swinject/Swinject
+  pod 'Swinject', '2.7.1'
+  # https://github.com/Swinject/SwinjectAutoregistration
+  pod 'SwinjectAutoregistration', '2.7.0'
+end
+
+target 'MergeTime' do
+  
+  # swiftlint; https://github.com/realm/SwiftLint
+  pod 'SwiftLint', '0.41'
+  
+  rx_swift
+  swinject
+end
+
+target 'UI' do
+  
+  rx_swift
+end
+
+target 'Core' do
+  
+  rx_swift
+end
+
+target 'ItemModules' do
+  
+  rx_swift
+  swinject
+end
+
+target 'Resources' do
+
+  # swiftgen; https://github.com/SwiftGen/SwiftGen
+  pod 'SwiftGen', '6.4.0'
+end
+  
+post_install do |installer|
+  # enables bitcode for each pod (required for some deps)
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['ENABLE_BITCODE'] = 'NO'
+    end
+  end
+  # https://github.com/CocoaPods/CocoaPods/issues/7314
+  fix_deployment_target(installer)
+end
+
+def fix_deployment_target(pod_installer)
+  return unless pod_installer
+  project = pod_installer.pods_project
+  deploymentMap = {}
+  project.build_configurations.each do |config|
+      deploymentMap[config.name] = config.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
+  end
+  project.targets.each do |t|
+      t.build_configurations.each do |config|
+          oldTarget = config.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
+          newTarget = deploymentMap[config.name]
+          if oldTarget == newTarget
+              next
+          end
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = newTarget
+      end
+  end
+end
+

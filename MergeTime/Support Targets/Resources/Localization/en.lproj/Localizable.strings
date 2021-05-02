@@ -1,0 +1,11 @@
+/* 
+  Localization.strings
+  MergeTime
+
+  Created by Vlad Shkodich on 18.04.2021.
+  
+*/
+
+"tabBar.storeroom" = "Storeroom";
+"tabBar.road" = "Road";
+"tabBar.account" = "Account";
