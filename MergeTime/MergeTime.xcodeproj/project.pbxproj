@@ -74,6 +74,7 @@
 		A138CC4A263E0B8900486070 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A138CC49263E0B8900486070 /* AccountViewController.swift */; };
 		A138CC4D263E0C0900486070 /* AccountFlowAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A138CC4C263E0C0900486070 /* AccountFlowAssembly.swift */; };
 		A138CC4F263E0DF600486070 /* AccountFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A138CC4E263E0DF600486070 /* AccountFlowCoordinator.swift */; };
+		A138CC51263E18D400486070 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A138CC50263E18D400486070 /* UIView+Animation.swift */; };
 		A1440B3F2635A1B50043A4D3 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11B4F0426359A6C00E77E32 /* TabBarController.swift */; };
 		A1440B652635B9480043A4D3 /* UIFont+Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1440B592635AD820043A4D3 /* UIFont+Typography.swift */; };
 		A15E4214262C68E30074980D /* Resources.h in Headers */ = {isa = PBXBuildFile; fileRef = A15E4212262C68E30074980D /* Resources.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -325,6 +326,7 @@
 		A138CC49263E0B8900486070 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		A138CC4C263E0C0900486070 /* AccountFlowAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFlowAssembly.swift; sourceTree = "<group>"; };
 		A138CC4E263E0DF600486070 /* AccountFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFlowCoordinator.swift; sourceTree = "<group>"; };
+		A138CC50263E18D400486070 /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
 		A1440B592635AD820043A4D3 /* UIFont+Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Typography.swift"; sourceTree = "<group>"; };
 		A15E4210262C68E30074980D /* Resources.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Resources.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A15E4212262C68E30074980D /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Resources.h; sourceTree = "<group>"; };
@@ -838,6 +840,7 @@
 				A1312C792634502600F3C9B4 /* Double+StringClockFormat.swift */,
 				A1312C752634502600F3C9B4 /* Observable+Call.swift */,
 				A1312C782634502600F3C9B4 /* UIEdgeInsets+Fabric.swift */,
+				A138CC50263E18D400486070 /* UIView+Animation.swift */,
 				A1312C712634502600F3C9B4 /* UIView+ReactiveHiddenAnimated.swift */,
 				A1312C702634502600F3C9B4 /* UIViewController+PullToRefreshable.swift */,
 				A1312C742634502600F3C9B4 /* UIViewController+RxLifecycle.swift */,
@@ -1728,6 +1731,7 @@
 				A1312CB42634502700F3C9B4 /* Observable+Call.swift in Sources */,
 				A1312CA62634502700F3C9B4 /* TableViewFactory.swift in Sources */,
 				A1312CB82634502700F3C9B4 /* Double+StringClockFormat.swift in Sources */,
+				A138CC51263E18D400486070 /* UIView+Animation.swift in Sources */,
 				A1312CAC2634502700F3C9B4 /* SwitchFactory.swift in Sources */,
 				A1312CB32634502700F3C9B4 /* UIViewController+RxLifecycle.swift in Sources */,
 				A1312CBE2634502700F3C9B4 /* UICollectionView+Reusable.swift in Sources */,
