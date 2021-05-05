@@ -103,6 +103,10 @@
 		A1C7CB10262C806300ACBB82 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C7CB0F262C806300ACBB82 /* Assets.swift */; };
 		A1C7CB45262C958700ACBB82 /* ApplicationFlowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C7CB44262C958700ACBB82 /* ApplicationFlowService.swift */; };
 		A1C7CB6C262C9AB000ACBB82 /* ApplicationFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C7CB6B262C9AB000ACBB82 /* ApplicationFlowCoordinator.swift */; };
+		A1CB2E46263ED76000E97764 /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CB2E45263ED76000E97764 /* ItemCollectionViewCell.swift */; };
+		A1CB2E49263EDB5B00E97764 /* Rx+Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CB2E48263EDB5B00E97764 /* Rx+Typealiases.swift */; };
+		A1CB2E4C263EDF1000E97764 /* ObservableType+Unwrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CB2E4B263EDF1000E97764 /* ObservableType+Unwrap.swift */; };
+		A1CB2E4E263EECBA00E97764 /* ItemCollectionViewCell+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CB2E4D263EECBA00E97764 /* ItemCollectionViewCell+ViewModel.swift */; };
 		A1E0B732263DDE7500B8721C /* StoreroomFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E0B731263DDE7500B8721C /* StoreroomFlowCoordinator.swift */; };
 		A1E0B739263DDE8500B8721C /* StoreroomFlowAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E0B738263DDE8500B8721C /* StoreroomFlowAssembly.swift */; };
 		A1E0B745263DDFEB00B8721C /* StoreroomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E0B744263DDFEB00B8721C /* StoreroomViewController.swift */; };
@@ -361,6 +365,10 @@
 		A1C7CB20262C826500ACBB82 /* Resources+Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resources+Typealiases.swift"; sourceTree = "<group>"; };
 		A1C7CB44262C958700ACBB82 /* ApplicationFlowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationFlowService.swift; sourceTree = "<group>"; };
 		A1C7CB6B262C9AB000ACBB82 /* ApplicationFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationFlowCoordinator.swift; sourceTree = "<group>"; };
+		A1CB2E45263ED76000E97764 /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		A1CB2E48263EDB5B00E97764 /* Rx+Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Typealiases.swift"; sourceTree = "<group>"; };
+		A1CB2E4B263EDF1000E97764 /* ObservableType+Unwrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Unwrap.swift"; sourceTree = "<group>"; };
+		A1CB2E4D263EECBA00E97764 /* ItemCollectionViewCell+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemCollectionViewCell+ViewModel.swift"; sourceTree = "<group>"; };
 		A1E0B731263DDE7500B8721C /* StoreroomFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreroomFlowCoordinator.swift; sourceTree = "<group>"; };
 		A1E0B738263DDE8500B8721C /* StoreroomFlowAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreroomFlowAssembly.swift; sourceTree = "<group>"; };
 		A1E0B744263DDFEB00B8721C /* StoreroomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreroomViewController.swift; sourceTree = "<group>"; };
@@ -771,6 +779,7 @@
 		A1312BB22634493700F3C9B4 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				A1CB2E4A263EDEE800E97764 /* Extensions */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -1058,6 +1067,7 @@
 			children = (
 				A1C65ED6263388C00086A56E /* DebugTools+Typealiases.swift */,
 				A161774B2634CE44009ED19A /* UI+Typealiases.swift */,
+				A1CB2E48263EDB5B00E97764 /* Rx+Typealiases.swift */,
 			);
 			path = Typealiases;
 			sourceTree = "<group>";
@@ -1081,10 +1091,19 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		A1CB2E4A263EDEE800E97764 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A1CB2E4B263EDF1000E97764 /* ObservableType+Unwrap.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		A1E0B72D263DDD7300B8721C /* Storeroom */ = {
 			isa = PBXGroup;
 			children = (
 				A1E0B730263DDE3B00B8721C /* Flow */,
+				A1CB2E4D263EECBA00E97764 /* ItemCollectionViewCell+ViewModel.swift */,
 				A1E0B752263DE01400B8721C /* StoreroomModel.swift */,
 				A1E0B744263DDFEB00B8721C /* StoreroomViewController.swift */,
 				A1E0B74B263DDFFF00B8721C /* StoreroomViewModel.swift */,
@@ -1129,6 +1148,7 @@
 		A1E0B759263DE01700B8721C /* Veiws */ = {
 			isa = PBXGroup;
 			children = (
+				A1CB2E45263ED76000E97764 /* ItemCollectionViewCell.swift */,
 				A1E0B75A263DE02B00B8721C /* StoreroomView.swift */,
 			);
 			path = Veiws;
@@ -1687,6 +1707,7 @@
 				A1A7A053262B08F10011054A /* Configuration.swift in Sources */,
 				A1752AEC2634DEFC0086BAE6 /* Resolver+Autoresolve.swift in Sources */,
 				A1E0B74C263DDFFF00B8721C /* StoreroomViewModel.swift in Sources */,
+				A1CB2E49263EDB5B00E97764 /* Rx+Typealiases.swift in Sources */,
 				A1752AD82634DB6B0086BAE6 /* MainFlowCoordinator.swift in Sources */,
 				A138CC3F263E071700486070 /* RoadFlowAssembly.swift in Sources */,
 				A116DFC1263369860095F03F /* NavigationNode.swift in Sources */,
@@ -1696,6 +1717,7 @@
 				A106B49C2629D47000F82551 /* AppDelegate.swift in Sources */,
 				A1E0B739263DDE8500B8721C /* StoreroomFlowAssembly.swift in Sources */,
 				A1E0B745263DDFEB00B8721C /* StoreroomViewController.swift in Sources */,
+				A1CB2E4E263EECBA00E97764 /* ItemCollectionViewCell+ViewModel.swift in Sources */,
 				A1C7CB6C262C9AB000ACBB82 /* ApplicationFlowCoordinator.swift in Sources */,
 				A138CC46263E0A5700486070 /* AccountModel.swift in Sources */,
 				A1752ADF2634DC2B0086BAE6 /* ApplicationFlowAssembly.swift in Sources */,
@@ -1715,6 +1737,7 @@
 				A138CC3A263E063000486070 /* RoadView.swift in Sources */,
 				A1E0B75B263DE02B00B8721C /* StoreroomView.swift in Sources */,
 				A1440B652635B9480043A4D3 /* UIFont+Typography.swift in Sources */,
+				A1CB2E46263ED76000E97764 /* ItemCollectionViewCell.swift in Sources */,
 				A138CC44263E0A1600486070 /* AccountView.swift in Sources */,
 				A1440B3F2635A1B50043A4D3 /* TabBarController.swift in Sources */,
 				A177939B2635DE28005BE742 /* UIImage+Resize.swift in Sources */,
@@ -1745,6 +1768,7 @@
 				A1312C9F2634502700F3C9B4 /* ScrollViewFactory.swift in Sources */,
 				A1312C9C2634502700F3C9B4 /* TextFieldFactory.swift in Sources */,
 				A1312CE9263450AB00F3C9B4 /* TableViewCell.swift in Sources */,
+				A1CB2E4C263EDF1000E97764 /* ObservableType+Unwrap.swift in Sources */,
 				A1312CE6263450AB00F3C9B4 /* CollectionViewCell.swift in Sources */,
 				A1312CB02634502700F3C9B4 /* UIView+ReactiveHiddenAnimated.swift in Sources */,
 				A1312CBF2634502700F3C9B4 /* Reusable.swift in Sources */,

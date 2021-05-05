@@ -1,6 +1,6 @@
 //
 //  TabBarController.swift
-//  MergeTime
+//  UI
 //
 //  Created by Vlad Shkodich on 25.04.2021.
 //
@@ -34,14 +34,14 @@ public final class TabBarController: UITabBarController {
             .animate(with: .bounce)
     }
     
-    public func select(tab: TabBarController.Items) {
-        selectedIndex = tab.rawValue
-    }
-    
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
 
         tabBar.layer.shadowColor = Asset.Colors.Text.primary.color.cgColorDynamic
+    }
+    
+    public func select(tab: TabBarController.Items) {
+        selectedIndex = tab.rawValue
     }
     
     private func setupStyling() {

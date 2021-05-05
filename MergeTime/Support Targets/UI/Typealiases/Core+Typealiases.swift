@@ -10,6 +10,9 @@ import Core
 public typealias NavigationController = Core.NavigationController
 public typealias NiblessView = Core.NiblessView
 public typealias ViewController = Core.ViewController
+public typealias Factory = Core.Factory
+public typealias CollectionViewCell = Core.CollectionViewCell
+public typealias TableViewCell = Core.TableViewCell
 
 // MARK: - Resources
 

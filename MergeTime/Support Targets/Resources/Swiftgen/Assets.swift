@@ -43,6 +43,10 @@ extension Asset {
     public enum Background {
       public static let primary = ColorAsset(name: "Background/primary")
     }
+    public enum Standart {
+      public static let transparent = ColorAsset(name: "Standart/transparent")
+      public static let white = ColorAsset(name: "Standart/white")
+    }
     public enum Text {
       public static let primary = ColorAsset(name: "Text/primary")
     }
