@@ -10,7 +10,7 @@ import UIKit
 
 final class StoreroomViewController: ViewController<StoreroomView> {
     
-    private let contentItemInteracted = PublishSubject<(item: StoreroomViewModel.Content, location: CGPoint?)>()
+    private let contentItemInteracted = PublishSubject<CGPoint?>()
     private let viewModel: StoreroomViewModel
     private let disposeBag = DisposeBag()
     
@@ -33,12 +33,12 @@ final class StoreroomViewController: ViewController<StoreroomView> {
             }
             .disposed(by: disposeBag)
         contentItemInteracted
-            .map { [weak rootView] interaction -> (item: StoreroomViewModel.Content, location: Int?) in
-                if let location = interaction.location {
-                    return (interaction.item, rootView?.itemsCollectionView.indexPathForItem(at: location)?.row)
+            .map { [weak rootView] location -> Int? in
+                guard let location = location else {
+                    return nil
                 }
                 
-                return (interaction.item, nil)
+                return rootView?.itemsCollectionView.indexPathForItem(at: location)?.row
             }
             .bind(to: viewModel.contentItemInteracted)
             .disposed(by: disposeBag)

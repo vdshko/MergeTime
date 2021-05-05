@@ -7,15 +7,34 @@
 
 import class UI.ItemCollectionViewCell
 import struct UIKit.CGPoint
+import protocol ItemModules.ItemModuleProtocol
 
 extension ItemCollectionViewCell {
     
-    func setup(with model: StoreroomViewModel.Content, contentItemInteracted: PublishSubject<(item: StoreroomViewModel.Content, location: CGPoint?)>) {
-        addNewView(model.item?.view)
+    func setup(with model: StoreroomViewModel.Content, contentItemInteracted: PublishSubject<(CGPoint?)>) {
+        model.item
+            .call(self, type(of: self).setupBinding)
+            .disposed(by: disposeBag)
         moveEnded
-            .subscribe(onNext: {
-                contentItemInteracted.onNext((item: model, location: $0))
+            .subscribe(onNext: { location in
+                contentItemInteracted.onNext(location)
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func setupBinding(for item: ItemModuleProtocol?) {
+        removeOldView()
+        
+        guard let item = item else {
+            return
+        }
+        
+        addNewView(item.view)
+        item.moveBackAction.call(self, type(of: self).moveViewToStartPosition).disposed(by: itemDisposeBag)
+        moveStarted
+            .subscribe(onNext: {
+                item.isDragging.accept(true)
+            })
+            .disposed(by: itemDisposeBag)
     }
 }

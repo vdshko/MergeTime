@@ -7,9 +7,13 @@
 
 import UIKit
 import class RxSwift.PublishSubject
+import class RxSwift.DisposeBag
 
 public final class ItemCollectionViewCell: CollectionViewCell {
     
+    public var itemDisposeBag = DisposeBag()
+    
+    public let moveStarted = PublishSubject<Void>()
     public let moveEnded = PublishSubject<CGPoint?>()
     
     private var isDragging = false
@@ -32,17 +36,28 @@ public final class ItemCollectionViewCell: CollectionViewCell {
     }
     
     public func addNewView(_ view: UIView?) {
-        view?.layout(in: contentView, with: .all(10))
+        view?.layout(in: contentView)
+    }
+    
+    public func moveViewToStartPosition() {
+        guard let view = contentView.subviews.last else {
+            return
+        }
+        
+        UIView.animate(withDuration: 0.1) {
+            view.frame.origin = .zero
+        }
     }
     
     public func removeOldView() {
-        contentView.subviews.last?.removeFromSuperview()
+        contentView.subviews.forEach { $0.removeFromSuperview() }
+        itemDisposeBag = DisposeBag()
     }
     
     public override func prepareForReuse() {
         super.prepareForReuse()
         
-        contentView.subviews.forEach { $0.removeFromSuperview() }
+        removeOldView()
     }
 }
 
@@ -75,6 +90,7 @@ extension ItemCollectionViewCell {
         }
         
         isDragging = true
+        moveStarted.onNext(())
         
         // WORKAROUND: - need to use superview?.insertSubview instead of superview?.bringSubviewToFront() because of UICollectionView cells specific
         superview?.insertSubview(self, aboveSubview: superview!.subviews.last!)

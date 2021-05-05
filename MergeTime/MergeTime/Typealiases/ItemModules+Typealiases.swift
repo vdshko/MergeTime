@@ -8,3 +8,4 @@
 import ItemModules
 
 public typealias ModuleType = ItemModules.ModuleType
+public typealias ItemModuleAssemblyProtocol = ItemModules.ItemModuleAssemblyProtocol

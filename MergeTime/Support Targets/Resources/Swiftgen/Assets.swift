@@ -47,9 +47,9 @@ extension Asset {
       public static let itemContentViewBackground = ColorAsset(name: "Specific/itemContentViewBackground")
       public static let itemContentViewBorder = ColorAsset(name: "Specific/itemContentViewBorder")
     }
-    public enum Standart {
-      public static let transparent = ColorAsset(name: "Standart/transparent")
-      public static let white = ColorAsset(name: "Standart/white")
+    public enum Standard {
+      public static let transparent = ColorAsset(name: "Standard/transparent")
+      public static let white = ColorAsset(name: "Standard/white")
     }
     public enum Text {
       public static let primary = ColorAsset(name: "Text/primary")
