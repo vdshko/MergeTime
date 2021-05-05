@@ -10,45 +10,39 @@ import class RxSwift.PublishSubject
 
 public final class ItemCollectionViewCell: CollectionViewCell {
     
-    public let containerBackgroundView: UIView = Factory.view()
-        .cornerRadius(9)
-        .clipsToBounds(false)
-        .build()
-    
     public let moveEnded = PublishSubject<CGPoint?>()
     
     private var isDragging = false
-    
-    public override func setupLayout() {
-        super.setupLayout()
-        
-        containerBackgroundView.layout(in: self)
-    }
     
     public override func setupStyling() {
         super.setupStyling()
         
         clipsToBounds = false
         contentView.clipsToBounds = false
+        contentView.backgroundColor = Asset.Colors.Specific.itemContentViewBackground.color
+        contentView.layer.cornerRadius = 9
+        contentView.layer.borderWidth = 1
+        contentView.layer.borderColor = Asset.Colors.Specific.itemContentViewBorder.color.cgColorDynamic
     }
     
-    public func addNewView(_ view: UIView?, text: String = "1") {
-        guard let view = view else {
-            return
-        }
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
         
-        view.layout(in: containerBackgroundView, with: .all(10))
-        let label: UILabel = Factory.label()
-            .text(text)
-            .textColor(Asset.Colors.Background.primary)
-            .textAlignment(.center)
-            .font(typography: .default)
-            .build()
-        label.layout(in: view)
+        contentView.layer.borderColor = Asset.Colors.Specific.itemContentViewBorder.color.cgColorDynamic
+    }
+    
+    public func addNewView(_ view: UIView?) {
+        view?.layout(in: contentView, with: .all(10))
     }
     
     public func removeOldView() {
-        containerBackgroundView.subviews.last?.removeFromSuperview()
+        contentView.subviews.last?.removeFromSuperview()
+    }
+    
+    public override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        contentView.subviews.forEach { $0.removeFromSuperview() }
     }
 }
 
@@ -74,7 +68,7 @@ extension ItemCollectionViewCell {
 extension ItemCollectionViewCell {
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard !containerBackgroundView.subviews.isEmpty else {
+        guard !contentView.subviews.isEmpty else {
             super.touchesBegan(touches, with: event)
             
             return
@@ -88,13 +82,13 @@ extension ItemCollectionViewCell {
     
     public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard isDragging,
-              let location = touches.first?.location(in: containerBackgroundView) else {
+              let location = touches.first?.location(in: contentView) else {
             super.touchesMoved(touches, with: event)
             
             return
         }
         
-        guard let view = containerBackgroundView.subviews.last else {
+        guard let view = contentView.subviews.last else {
             return
         }
         

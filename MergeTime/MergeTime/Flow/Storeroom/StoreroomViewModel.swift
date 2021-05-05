@@ -9,20 +9,13 @@
 
 import class UIKit.UIColor
 import class UIKit.UIView
-import class UI.Factory
+import class UI.SimpleItemView
 
 final class StoreroomViewModel {
     
     struct Content {
         
-        let color: UIColor
         var item: Item?
-    }
-    
-    struct Item {
-        
-        let id: Int
-        var view: UIView?
     }
     
     var contentObservable: Observable<[Content]> {
@@ -45,18 +38,19 @@ final class StoreroomViewModel {
     private func setupBinding() {
         contentItemInteracted
             .filter { $0.location != nil }
-            .withLatestFrom(content.unwrap(with: []).filter { !$0.isEmpty }) { [weak self] tuple, content -> [Content] in
-                var newContent = content.map { item -> Content in
-                    if item.item?.id == tuple.item.item?.id {
-                        return Content(color: item.color, item: nil)
+            .withLatestFrom(content.unwrap(with: []).filter { !$0.isEmpty }) { tuple, content -> [Content] in
+                var newContent = content.map { content -> Content in
+                    if content.item === tuple.item.item {
+                        return Content()
                     }
                     
-                    return item
+                    return content
                 }
                 
                 if let index = tuple.location {
-                    if newContent[index].item?.id == 2, let view = self?.addMockView() {
-                        newContent[index].item = Item(id: 12, view: view)
+                    if newContent[index].item?.moduleType == tuple.item.item?.moduleType,
+                       let moduleType = tuple.item.item?.moduleType.getNextLevel {
+                        newContent[index].item = Item(moduleType: moduleType)
                     } else {
                         newContent[index].item = tuple.item.item
                     }
@@ -67,39 +61,36 @@ final class StoreroomViewModel {
             .bind(to: content)
             .disposed(by: disposeBag)
     }
+}
+
+// MARK: - Mock content
+
+extension StoreroomViewModel {
+    
+    class Item: Equatable {
+        
+        var view: UIView?
+        
+        let moduleType: ModuleType
+        
+        init(moduleType: ModuleType = .viewWithNumber(.one)) {
+            self.view = SimpleItemView(with: moduleType.level)
+            self.moduleType = moduleType
+        }
+        
+        static func == (lhs: StoreroomViewModel.Item, rhs: StoreroomViewModel.Item) -> Bool {
+            return lhs.moduleType == rhs.moduleType
+        }
+    }
     
     private func setupMockContent() -> [Content] {
         return [
-            Content(color: .blue, item: Item(id: 1, view: addMockView())), Content(color: .brown),
-            Content(color: .cyan), Content(color: .darkGray),
-            Content(color: .green), Content(color: .lightGray),
-            Content(color: .lightText), Content(color: .magenta, item: Item(id: 2, view: addMockView())),
-            Content(color: .orange), Content(color: .purple),
-            Content(color: .red), Content(color: .yellow),
-            
-            Content(color: .blue), Content(color: .brown),
-            Content(color: .cyan, item: Item(id: 3, view: addMockView())), Content(color: .darkGray),
-            Content(color: .darkText), Content(color: .gray),
-            Content(color: .green), Content(color: .lightGray),
-            Content(color: .lightText), Content(color: .magenta),
-            Content(color: .orange), Content(color: .purple),
-            Content(color: .red), Content(color: .yellow, item: Item(id: 4, view: addMockView())),
-            
-            Content(color: .blue), Content(color: .brown),
-            Content(color: .cyan), Content(color: .darkGray),
-            Content(color: .darkText), Content(color: .gray),
-            Content(color: .green), Content(color: .lightGray, item: Item(id: 5, view: addMockView())),
-            Content(color: .lightText), Content(color: .magenta),
-            Content(color: .orange), Content(color: .purple),
-            Content(color: .red), Content(color: .yellow)
+            Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item()),
+            Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item()),
+            Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item()),
+            Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item()),
+            Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item()),
+            Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item())
         ]
-    }
-    
-    private func addMockView() -> UIView {
-        return Factory.view()
-            .background(Asset.Colors.Standart.white)
-            .border(color: Asset.Colors.Background.primary, width: 1)
-            .cornerRadius(9)
-            .build()
     }
 }
