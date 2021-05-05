@@ -25,7 +25,7 @@ final class MainFlowCoordinator: NavigationFlowCoordinator {
     func createFlow() -> UIViewController {
         let controller: TabBarController = container.autoresolve()
         controller.viewControllers = TabBarController.Items.allCases.map { createViewController(for: $0) }
-        controller.select(tab: .road)
+        controller.select(tab: .storeroom)
         containerViewController = controller
         
         return controller
