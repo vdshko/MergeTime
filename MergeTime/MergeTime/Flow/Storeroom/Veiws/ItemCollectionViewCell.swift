@@ -23,7 +23,6 @@ public final class ItemCollectionViewCell: CollectionViewCell {
         
         clipsToBounds = false
         contentView.clipsToBounds = false
-        contentView.backgroundColor = Asset.Colors.Specific.itemContentViewBackground.color
         contentView.layer.cornerRadius = 9
         contentView.layer.borderWidth = 1
         contentView.layer.borderColor = Asset.Colors.Specific.itemContentViewBorder.color.cgColorDynamic
@@ -31,7 +30,7 @@ public final class ItemCollectionViewCell: CollectionViewCell {
     
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         contentView.layer.borderColor = Asset.Colors.Specific.itemContentViewBorder.color.cgColorDynamic
     }
     
@@ -40,13 +39,7 @@ public final class ItemCollectionViewCell: CollectionViewCell {
     }
     
     public func moveViewToStartPosition() {
-        guard let view = contentView.subviews.last else {
-            return
-        }
-        
-        UIView.animate(withDuration: 0.1) {
-            view.frame.origin = .zero
-        }
+        contentView.subviews.last?.animate(with: .nonReverseAnimation(.moveToPoint()))
     }
     
     public func removeOldView() {
@@ -59,6 +52,12 @@ public final class ItemCollectionViewCell: CollectionViewCell {
         
         removeOldView()
     }
+    
+    public func setupStyling(isEvenNumberCell: Bool) {
+            contentView.backgroundColor = isEvenNumberCell
+                ? Asset.Colors.Specific.ItemContentViewBackground.evenNumberCell.color
+                : Asset.Colors.Specific.ItemContentViewBackground.notEvenNumberCell.color
+    }
 }
 
 // MARK: - Cell sizing
@@ -67,7 +66,7 @@ extension ItemCollectionViewCell {
     
     enum Constants {
         
-        static let itemsMargin: CGFloat = 10
+        static let itemsMargin: CGFloat = 4
     }
     
     public static func designedSize(for contentSize: CGSize, itemsInLine: Int = 5) -> CGSize {

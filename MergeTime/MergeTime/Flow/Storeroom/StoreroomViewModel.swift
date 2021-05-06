@@ -88,12 +88,13 @@ extension StoreroomViewModel {
             addMock(), addMock(), addMock(), addMock(), addMock(),
             addMock(level: .four), addMock(), addMock(), addMock(), addMock(),
             addMock(), addMock(), addMock(), addMock(), addMock(),
+            addMock(), addMock(), addMock(), addMock(), addMock(),
             addMock(), addMock(), addMock(level: .five), addMock(level: .six), addMock(),
             addMock(), addMock(), addMock(), addMock(), addMock(isNil: true)
         ]
     }
     
-    private func addMock(isNil: Bool = false, level: ModuleLevel = .one) -> Content {
+    private func addMock(isNil: Bool = true, level: ModuleLevel = .one) -> Content {
         return Content(item: BehaviorRelay<ItemModuleProtocol?>(value: isNil ? nil : itemModuleAssembly.module(type: .squareWithNumber, level: level)))
     }
 }

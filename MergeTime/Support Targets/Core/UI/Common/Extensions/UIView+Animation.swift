@@ -7,12 +7,23 @@
 
 import UIKit
 
-public enum AnimationStyle: String {
+public enum AnimationStyle {
+    
+    case reverseAnimation(ReverseAnimation)
+    case nonReverseAnimation(NonReverseAnimation)
+}
+
+public enum ReverseAnimation: String {
     
     case bounce
 }
 
-private extension AnimationStyle {
+public enum NonReverseAnimation {
+    
+    case moveToPoint(point: CGPoint = .zero)
+}
+
+private extension ReverseAnimation {
     
     enum Keys {
         
@@ -36,10 +47,28 @@ private extension AnimationStyle {
     }
 }
 
+private extension NonReverseAnimation {
+    
+    func animation(for layer: CALayer) {
+        switch self {
+        case .moveToPoint(let point): moveToPointAnimation(for: layer, point: point)
+        }
+    }
+    
+    private func moveToPointAnimation(for layer: CALayer, point: CGPoint) {
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut) {
+            layer.frame.origin = .zero
+        }
+    }
+}
+
 public extension CALayer {
     
     func animate(with animationStyle: AnimationStyle) {
-        add(animationStyle.animation, forKey: animationStyle.rawValue)
+        switch animationStyle {
+        case .reverseAnimation(let style): add(style.animation, forKey: style.rawValue)
+        case .nonReverseAnimation(let style): style.animation(for: self)
+        }
     }
 }
 
