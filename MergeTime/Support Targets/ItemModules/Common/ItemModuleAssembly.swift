@@ -23,7 +23,8 @@ public final class ItemModuleAssembly: ItemModuleAssemblyProtocol {
     }
     
     public func nextLevel(for module: ItemModuleProtocol) -> ItemModuleProtocol? {
-        guard let newLevel = ModuleLevel(rawValue: module.moduleLevel.rawValue + 1) else {
+        guard let newLevel = ModuleLevel(rawValue: module.moduleLevel.rawValue + 1),
+              newLevel <= module.maxLevel else {
             return nil
         }
         

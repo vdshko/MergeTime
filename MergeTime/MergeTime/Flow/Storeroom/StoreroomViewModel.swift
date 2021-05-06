@@ -56,21 +56,21 @@ final class StoreroomViewModel {
         
         if let directItem = directContent.item.value,
            let selectedItem = selectedContent.item.value {
+            
             // handle merge with non empty direct content
-            
-            if directItem.isEqual(to: selectedItem),
-               !directItem.isSameObject(to: selectedItem) {
-                
-                // TBD: need to add max level per item module value
-                
-                directContent.item.accept(itemModuleAssembly.nextLevel(for: selectedItem))
-                selectedContent.item.accept(nil)
-            } else {
+            guard directItem.isEqual(to: selectedItem),
+               !directItem.isSameObject(to: selectedItem),
+               !directItem.isMaxLevel else {
                 selectedItem.moveBackAction.onNext(())
+                
+                return
             }
-        } else {
-            // handle merge with empty direct content
             
+            directContent.item.accept(itemModuleAssembly.nextLevel(for: selectedItem))
+            selectedContent.item.accept(nil)
+        } else {
+            
+            // handle merge with empty direct content
             directContent.item.accept(selectedContent.item.value)
             selectedContent.item.accept(nil)
         }
@@ -94,7 +94,7 @@ extension StoreroomViewModel {
         ]
     }
     
-    private func addMock(isNil: Bool = true, level: ModuleLevel = .one) -> Content {
+    private func addMock(isNil: Bool = false, level: ModuleLevel = .one) -> Content {
         return Content(item: BehaviorRelay<ItemModuleProtocol?>(value: isNil ? nil : itemModuleAssembly.module(type: .squareWithNumber, level: level)))
     }
 }

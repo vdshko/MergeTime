@@ -14,12 +14,18 @@ public protocol ItemModuleProtocol: AnyObject {
     var moduleLevel: ModuleLevel { get }
     var isDragging: BehaviorRelay<Bool> { get }
     var moveBackAction: PublishSubject<Void> { get }
+    var maxLevel: ModuleLevel { get }
+    var isMaxLevel: Bool { get }
     
     func isEqual(to module: ItemModuleProtocol) -> Bool
     func isSameObject(to module: ItemModuleProtocol) -> Bool
 }
 
 public extension ItemModuleProtocol {
+    
+    var isMaxLevel: Bool {
+        return moduleLevel == maxLevel
+    }
     
     func isEqual(to module: ItemModuleProtocol) -> Bool {
         return moduleType == module.moduleType && moduleLevel == module.moduleLevel
