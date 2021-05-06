@@ -24,14 +24,14 @@ public final class ItemCollectionViewCell: CollectionViewCell {
         clipsToBounds = false
         contentView.clipsToBounds = false
         contentView.layer.cornerRadius = 9
-        contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = Asset.Colors.Specific.itemContentViewBorder.color.cgColorDynamic
+//        contentView.layer.borderWidth = 1
+//        contentView.layer.borderColor = Asset.Colors.Specific.itemContentViewBorder.color.cgColorDynamic
     }
     
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
 
-        contentView.layer.borderColor = Asset.Colors.Specific.itemContentViewBorder.color.cgColorDynamic
+//        contentView.layer.borderColor = Asset.Colors.Specific.itemContentViewBorder.color.cgColorDynamic
     }
     
     public func addNewView(_ view: UIView?) {

@@ -27,7 +27,8 @@ final class StoreroomViewController: ViewController<StoreroomView> {
         viewModel.contentObservable
             .bind(to: rootView.itemsCollectionView.rx.items) { [unowned contentItemInteracted] collectionView, item, model in
                 let cell: ItemCollectionViewCell = collectionView.dequeueReusableCell(IndexPath(item: item, section: 0))
-                cell.setup(with: model, contentItemInteracted: contentItemInteracted, isEvenNumber: (item + 1) % 2 == 0)
+                let viewModel = ItemCollectionViewCellModel(with: model, contentItemInteracted: contentItemInteracted, isEvenNumber: (item + 1) % 2 == 0)
+                cell.setup(with: viewModel)
                 
                 return cell
             }
