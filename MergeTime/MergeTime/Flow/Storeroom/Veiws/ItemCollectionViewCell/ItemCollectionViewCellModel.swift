@@ -11,47 +11,84 @@ import protocol ItemModules.ItemModuleProtocol
 
 final class ItemCollectionViewCellModel {
     
-    var itemDisposeBag = DisposeBag()
-    
-    let removeOldViewObservable = PublishSubject<Void>()
-    let addNewViewObservable = BehaviorRelay<UIView?>(value: nil)
-    let moveStartedObservable = PublishSubject<Void>()
-    let moveBackAction = PublishSubject<Void>()
-    
+    let touchesBeganObservable = PublishSubject<Void>()
+    let touchesMovedObservable = PublishSubject<CGPoint?>()
+    let touchesEndedObservable = PublishSubject<CGPoint?>()
+    let touchesCancelledObservable = PublishSubject<Void>()
+    let bringCellToFrontObservable = PublishSubject<Void>()
+    let checkDirectionItemIndexAction = PublishSubject<(location: CGPoint, itemObservable: BehaviorRelay<ItemModuleProtocol?>)>()
+    let updateCellWithViewObservable = BehaviorRelay<UIView?>(value: nil)
+    let moveViewToPositionObservable = PublishSubject<CGPoint?>()
+    let item: BehaviorRelay<ItemModuleProtocol?>
     let disposeBag = DisposeBag()
-    let itemObservable: BehaviorRelay<ItemModuleProtocol?>
-    let contentItemInteracted: PublishSubject<(CGPoint?)>
-    let isEvenNumber: Bool
     
-    init(with model: StoreroomViewModel.Content, contentItemInteracted: PublishSubject<(CGPoint?)>, isEvenNumber: Bool) {
-        itemObservable = model.item
-        self.contentItemInteracted = contentItemInteracted
-        self.isEvenNumber = isEvenNumber
+    private var itemDisposeBag = DisposeBag()
+    private var isDragging: Bool = false
+    
+    private let isRootContainerEnabledObservable: BehaviorRelay<Bool>
+    
+    init(item: ItemModuleProtocol?, isRootContainerEnabledObservable: BehaviorRelay<Bool>) {
+        self.item = BehaviorRelay(value: item)
+        self.isRootContainerEnabledObservable = isRootContainerEnabledObservable
         
         setupBinding()
     }
     
     private func setupBinding() {
-        itemObservable.call(self, type(of: self).setupItemBinding).disposed(by: disposeBag)
+        item.call(self, type(of: self).setupItemBinding).disposed(by: disposeBag)
+        touchesBeganObservable
+            .filter { [weak item] in item?.value != nil }
+            .map { false }
+            .bind(to: isRootContainerEnabledObservable)
+            .disposed(by: disposeBag)
+        touchesMovedObservable
+            .compactMap { $0 }
+            .withLatestFrom(item.compactMap { $0 }) { ($0, $1) }
+            .subscribe(onNext: { [weak moveViewToPositionObservable, weak bringCellToFrontObservable] position, item in
+                if !item.isDragging.value {
+                    item.isDragging.accept(true)
+                    bringCellToFrontObservable?.onNext(())
+                }
+                
+                moveViewToPositionObservable?.onNext(position)
+            })
+            .disposed(by: disposeBag)
+        touchesCancelledObservable
+            .subscribe(onNext: { [weak moveViewToPositionObservable, weak item] in
+                if item?.value?.isDragging.value == true {
+                    item?.value?.isDragging.accept(false)
+                }
+                
+                moveViewToPositionObservable?.onNext(nil)
+            })
+            .disposed(by: disposeBag)
+        touchesEndedObservable
+            .withLatestFrom(Observable.just(item)) { ($0, $1) }
+            .subscribe(onNext: { [weak checkDirectionItemIndexAction] position, itemObservable in
+                if let position = position,
+                   itemObservable.value != nil {
+                    checkDirectionItemIndexAction?.onNext((location: position, itemObservable: itemObservable))
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     private func setupItemBinding(item: ItemModuleProtocol?) {
         itemDisposeBag = DisposeBag()
-        removeOldViewObservable.onNext(())
+        updateCellWithViewObservable.accept(item?.view)
         
         guard let item = item else {
             return
         }
         
-        addNewViewObservable.accept(item.view)
         item.moveBackAction
-            .subscribe(onNext: { [weak moveBackAction] in
-                moveBackAction?.onNext(())
+            .subscribe(onNext: { [weak moveViewToPositionObservable] in
+                moveViewToPositionObservable?.onNext(nil)
             })
             .disposed(by: itemDisposeBag)
-        moveStartedObservable
-            .subscribe(onNext: {
-                item.isDragging.accept(true)
+        item.isDragging
+            .subscribe(onNext: { [weak isRootContainerEnabledObservable] isDragging in
+                isRootContainerEnabledObservable?.accept(!isDragging)
             })
             .disposed(by: itemDisposeBag)
     }

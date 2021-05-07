@@ -11,10 +11,13 @@ import class RxSwift.DisposeBag
 
 public final class ItemCollectionViewCell: CollectionViewCell {
     
-    public var itemDisposeBag = DisposeBag()
-    
     public let moveStarted = PublishSubject<Void>()
     public let moveEnded = PublishSubject<CGPoint?>()
+    
+    public let touchesBeganObservable = PublishSubject<Void>()
+    public let touchesMovedObservable = PublishSubject<CGPoint?>()
+    public let touchesEndedObservable = PublishSubject<CGPoint?>()
+    public let touchesCancelledObservable = PublishSubject<Void>()
     
     private var isDragging = false
     
@@ -34,29 +37,44 @@ public final class ItemCollectionViewCell: CollectionViewCell {
 //        contentView.layer.borderColor = Asset.Colors.Specific.itemContentViewBorder.color.cgColorDynamic
     }
     
-    public func addNewView(_ view: UIView?) {
-        view?.layout(in: contentView)
-    }
-    
-    public func moveViewToStartPosition() {
-        contentView.subviews.last?.animate(with: .nonReverseAnimation(.moveToPoint()))
-    }
-    
-    public func removeOldView() {
-        contentView.subviews.forEach { $0.removeFromSuperview() }
-        itemDisposeBag = DisposeBag()
-    }
-    
     public override func prepareForReuse() {
         super.prepareForReuse()
         
         removeOldView()
     }
     
+    public func updateCell(with view: UIView?) {
+        removeOldView()
+        view?.layout(in: contentView)
+    }
+    
+    public func moveViewToPosition(_ position: CGPoint?) {
+        guard let position = position,
+              let view = contentView.subviews.last else {
+            contentView.subviews.last?.animate(with: .nonReverseAnimation(.moveToPoint()))
+            
+            return
+        }
+        
+        view.frame.origin = CGPoint(
+            x: position.x - view.frame.width / 2,
+            y: position.y - view.frame.height / 2
+        )
+    }
+    
+    public func removeOldView() {
+        contentView.subviews.forEach { $0.removeFromSuperview() }
+    }
+    
     public func setupStyling(isEvenNumberCell: Bool) {
             contentView.backgroundColor = isEvenNumberCell
                 ? Asset.Colors.Specific.ItemContentViewBackground.evenNumberCell.color
                 : Asset.Colors.Specific.ItemContentViewBackground.notEvenNumberCell.color
+    }
+    
+    public func bringCellToFront() {
+        // WORKAROUND: - need to use superview?.insertSubview() instead of superview?.bringSubviewToFront() because of UICollectionView cells specific
+        superview?.insertSubview(self, aboveSubview: superview!.subviews.last!)
     }
 }
 
@@ -82,53 +100,26 @@ extension ItemCollectionViewCell {
 extension ItemCollectionViewCell {
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard !contentView.subviews.isEmpty else {
-            super.touchesBegan(touches, with: event)
-            
-            return
-        }
+        super.touchesBegan(touches, with: event)
         
-        isDragging = true
-        moveStarted.onNext(())
-        
-        // WORKAROUND: - need to use superview?.insertSubview instead of superview?.bringSubviewToFront() because of UICollectionView cells specific
-        superview?.insertSubview(self, aboveSubview: superview!.subviews.last!)
+        touchesBeganObservable.onNext(())
     }
     
     public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard isDragging,
-              let location = touches.first?.location(in: contentView) else {
-            super.touchesMoved(touches, with: event)
-            
-            return
-        }
+        super.touchesMoved(touches, with: event)
         
-        guard let view = contentView.subviews.last else {
-            return
-        }
-        
-        view.frame.origin = CGPoint(
-            x: location.x - view.frame.width / 2,
-            y: location.y - view.frame.height / 2
-        )
+        touchesMovedObservable.onNext(touches.first?.location(in: contentView))
     }
     
     public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if isDragging,
-           let location = touches.first?.location(in: superview) {
-            isDragging = false
-            moveEnded.onNext(location)
-        }
-        
         super.touchesEnded(touches, with: event)
+        
+        touchesEndedObservable.onNext(touches.first?.location(in: superview))
     }
     
     public override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if isDragging {
-            isDragging = false
-            moveEnded.onNext(nil)
-        }
-        
         super.touchesCancelled(touches, with: event)
+        
+        touchesCancelledObservable.onNext(())
     }
 }

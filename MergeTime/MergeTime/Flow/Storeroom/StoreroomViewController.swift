@@ -25,24 +25,20 @@ final class StoreroomViewController: ViewController<StoreroomView> {
     private func setupBindings() {
         rootView.itemsCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
         viewModel.contentObservable
-            .bind(to: rootView.itemsCollectionView.rx.items) { [unowned contentItemInteracted] collectionView, item, model in
+            .bind(to: rootView.itemsCollectionView.rx.items) { collectionView, item, model in
                 let cell: ItemCollectionViewCell = collectionView.dequeueReusableCell(IndexPath(item: item, section: 0))
-                let viewModel = ItemCollectionViewCellModel(with: model, contentItemInteracted: contentItemInteracted, isEvenNumber: (item + 1) % 2 == 0)
-                cell.setup(with: viewModel)
+                cell.setup(with: model, isEvenNumber: (item + 1) % 2 == 0)
                 
                 return cell
             }
             .disposed(by: disposeBag)
-        contentItemInteracted
-            .map { [weak rootView] location -> Int? in
-                guard let location = location else {
-                    return nil
-                }
-                
-                return rootView?.itemsCollectionView.indexPathForItem(at: location)?.row
+        viewModel.checkDirectionItemIndexAction
+            .map { [weak rootView] in
+                (rootView?.itemsCollectionView.indexPathForItem(at: $0.location)?.item, $0.itemObservable)
             }
-            .bind(to: viewModel.contentItemInteracted)
+            .call(viewModel, type(of: viewModel).updateItems)
             .disposed(by: disposeBag)
+        viewModel.isRootContainerEnabledObservable.bind(to: rootView.itemsCollectionView.rx.isUserInteractionEnabled).disposed(by: disposeBag)
     }
 }
 

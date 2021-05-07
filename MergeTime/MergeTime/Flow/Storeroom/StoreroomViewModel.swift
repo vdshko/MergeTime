@@ -6,24 +6,24 @@
 //
 
 import protocol ItemModules.ItemModuleProtocol
+import struct UIKit.CGPoint
 
 // remove after finish test
 import enum ItemModules.ModuleLevel
 
 final class StoreroomViewModel {
     
-    struct Content {
-        
-        let item: BehaviorRelay<ItemModuleProtocol?>
-    }
-    
-    var contentObservable: Observable<[Content]> {
+    var contentObservable: Observable<[ItemCollectionViewCellModel]> {
         return content.unwrap(with: [])
     }
+    var isRootContainerEnabledObservable: Observable<Bool> {
+        return isRootContainerEnabled.distinctUntilChanged().skip(1)
+    }
+    let checkDirectionItemIndexAction = PublishSubject<(location: CGPoint, itemObservable: BehaviorRelay<ItemModuleProtocol?>)>()
     
-    let contentItemInteracted = PublishSubject<Int?>()
+    let isRootContainerEnabled = BehaviorRelay<Bool>(value: false)
     
-    private let content = BehaviorRelay<[Content]?>(value: nil)
+    private let content = BehaviorRelay<[ItemCollectionViewCellModel]?>(value: nil)
     private let disposeBag = DisposeBag()
     private let model: StoreroomModel
     private let itemModuleAssembly: ItemModuleAssemblyProtocol
@@ -32,47 +32,38 @@ final class StoreroomViewModel {
         self.model = model
         self.itemModuleAssembly = itemModuleAssembly
         content.accept(setupMockContent())
-        
-        setupBinding()
     }
     
-    private func setupBinding() {
-        contentItemInteracted.call(self, type(of: self).updateItems).disposed(by: disposeBag)
-    }
-    
-    private func updateItems(with index: Int?) {
-        guard let selectedContent = content.value?.first(where: { $0.item.value?.isDragging.value == true }) else {
+    func updateItems(options: (directionItemIndex: Int?, selectedItemObservable: BehaviorRelay<ItemModuleProtocol?>)) {
+        options.selectedItemObservable.value?.isDragging.accept(false)
+
+        guard let index = options.directionItemIndex,
+              let directItemModel = content.value?[index] else {
+            options.selectedItemObservable.value?.moveBackAction.onNext(())
+
             return
         }
-        
-        selectedContent.item.value?.isDragging.accept(false)
-        
-        guard let index = index,
-              let directContent = content.value?[index] else {
-            selectedContent.item.value?.moveBackAction.onNext(())
-            
-            return
-        }
-        
-        if let directItem = directContent.item.value,
-           let selectedItem = selectedContent.item.value {
-            
+
+        if let directItem = directItemModel.item.value,
+           let selectedItem = options.selectedItemObservable.value {
+
             // handle merge with non empty direct content
             guard directItem.isEqual(to: selectedItem),
                !directItem.isSameObject(to: selectedItem),
                !directItem.isMaxLevel else {
+
                 selectedItem.moveBackAction.onNext(())
-                
+
                 return
             }
-            
-            directContent.item.accept(itemModuleAssembly.nextLevel(for: selectedItem))
-            selectedContent.item.accept(nil)
+
+            directItemModel.item.accept(itemModuleAssembly.nextLevel(for: selectedItem))
+            options.selectedItemObservable.accept(nil)
         } else {
-            
+
             // handle merge with empty direct content
-            directContent.item.accept(selectedContent.item.value)
-            selectedContent.item.accept(nil)
+            directItemModel.item.accept(options.selectedItemObservable.value)
+            options.selectedItemObservable.accept(nil)
         }
     }
 }
@@ -82,19 +73,25 @@ final class StoreroomViewModel {
 
 extension StoreroomViewModel {
 
-    private func setupMockContent() -> [Content] {
+    private func setupMockContent() -> [ItemCollectionViewCellModel] {
         return [
             addMock(level: .eight), addMock(level: .eight), addMock(), addMock(level: .three), addMock(),
-            addMock(), addMock(), addMock(), addMock(), addMock(),
+            addMock(), addMock(), addMock(), addMock(isNil: true), addMock(),
             addMock(level: .four), addMock(), addMock(), addMock(), addMock(),
             addMock(), addMock(), addMock(), addMock(), addMock(),
             addMock(), addMock(), addMock(), addMock(), addMock(),
-            addMock(), addMock(), addMock(level: .five), addMock(level: .six), addMock(),
-            addMock(), addMock(), addMock(), addMock(), addMock(isNil: true)
+            addMock(), addMock(isNil: false, level: .five), addMock(), addMock(isNil: false, level: .six), addMock(),
+            addMock(), addMock(), addMock(isNil: true), addMock(), addMock()
         ]
     }
     
-    private func addMock(isNil: Bool = false, level: ModuleLevel = .one) -> Content {
-        return Content(item: BehaviorRelay<ItemModuleProtocol?>(value: isNil ? nil : itemModuleAssembly.module(type: .squareWithNumber, level: level)))
+    private func addMock(isNil: Bool = false, level: ModuleLevel = .one) -> ItemCollectionViewCellModel {
+        let model = ItemCollectionViewCellModel(
+            item: isNil ? nil : itemModuleAssembly.module(type: .squareWithNumber, level: level),
+            isRootContainerEnabledObservable: isRootContainerEnabled
+        )
+        model.checkDirectionItemIndexAction.bind(to: checkDirectionItemIndexAction).disposed(by: model.disposeBag)
+        
+        return model
     }
 }
