@@ -5,92 +5,98 @@
 //  Created by Vlad Shkodich on 01.05.2021.
 //
 
-// TBD: remove UI/UIKit imports after add items in ItemModules target
+import protocol ItemModules.ItemModuleProtocol
+import struct UIKit.CGPoint
 
-import class UIKit.UIColor
-import class UIKit.UIView
-import class UI.SimpleItemView
+// remove after finish test
+import enum ItemModules.ModuleLevel
 
 final class StoreroomViewModel {
     
-    struct Content {
-        
-        var item: Item?
-    }
-    
-    var contentObservable: Observable<[Content]> {
+    var contentObservable: Observable<[ItemCollectionViewCellModel]> {
         return content.unwrap(with: [])
     }
+    var isRootContainerEnabledObservable: Observable<Bool> {
+        return isRootContainerEnabled.distinctUntilChanged().skip(1)
+    }
+    let checkDirectionItemIndexAction = PublishSubject<(cellPosition: CGPoint, itemPosition: CGPoint)>()
     
-    let contentItemInteracted = PublishSubject<(item: Content, location: Int?)>()
+    let isRootContainerEnabled = BehaviorRelay<Bool>(value: false)
     
-    private let content = BehaviorRelay<[Content]?>(value: nil)
+    private let content = BehaviorRelay<[ItemCollectionViewCellModel]?>(value: nil)
     private let disposeBag = DisposeBag()
     private let model: StoreroomModel
+    private let itemModuleAssembly: ItemModuleAssemblyProtocol
     
-    init(model: StoreroomModel) {
+    init(model: StoreroomModel, itemModuleAssembly: ItemModuleAssemblyProtocol) {
         self.model = model
+        self.itemModuleAssembly = itemModuleAssembly
         content.accept(setupMockContent())
-        
-        setupBinding()
     }
     
-    private func setupBinding() {
-        contentItemInteracted
-            .filter { $0.location != nil }
-            .withLatestFrom(content.unwrap(with: []).filter { !$0.isEmpty }) { tuple, content -> [Content] in
-                var newContent = content.map { content -> Content in
-                    if content.item === tuple.item.item {
-                        return Content()
-                    }
-                    
-                    return content
-                }
-                
-                if let index = tuple.location {
-                    if newContent[index].item?.moduleType == tuple.item.item?.moduleType,
-                       let moduleType = tuple.item.item?.moduleType.getNextLevel {
-                        newContent[index].item = Item(moduleType: moduleType)
-                    } else {
-                        newContent[index].item = tuple.item.item
-                    }
-                }
-                
-                return newContent
+    func updateItems(indexes: (selectedItemIndex: Int?, directionItemIndex: Int?)) {
+        guard let selectedIndex = indexes.selectedItemIndex,
+              let selectedItemModel = content.value?[selectedIndex] else {
+            return
+        }
+        
+        selectedItemModel.item.value?.isDragging.accept(false)
+
+        guard let directionIndex = indexes.directionItemIndex,
+              let directItemModel = content.value?[directionIndex] else {
+            selectedItemModel.item.value?.moveBackAction.onNext(())
+
+            return
+        }
+
+        if let directItem = directItemModel.item.value,
+           let selectedItem = selectedItemModel.item.value {
+
+            // handle merge with non empty direct content
+            guard directItem.isEqual(to: selectedItem),
+               !directItem.isSameObject(to: selectedItem),
+               !directItem.isMaxLevel else {
+
+                selectedItem.moveBackAction.onNext(())
+
+                return
             }
-            .bind(to: content)
-            .disposed(by: disposeBag)
+
+            directItemModel.item.accept(itemModuleAssembly.nextLevel(for: selectedItem))
+            selectedItemModel.item.accept(nil)
+        } else {
+
+            // handle merge with empty direct content
+            directItemModel.item.accept(selectedItemModel.item.value)
+            selectedItemModel.item.accept(nil)
+        }
     }
 }
 
 // MARK: - Mock content
+// remove after finish test
 
 extension StoreroomViewModel {
-    
-    class Item: Equatable {
-        
-        var view: UIView?
-        
-        let moduleType: ModuleType
-        
-        init(moduleType: ModuleType = .viewWithNumber(.one)) {
-            self.view = SimpleItemView(with: moduleType.level)
-            self.moduleType = moduleType
-        }
-        
-        static func == (lhs: StoreroomViewModel.Item, rhs: StoreroomViewModel.Item) -> Bool {
-            return lhs.moduleType == rhs.moduleType
-        }
+
+    private func setupMockContent() -> [ItemCollectionViewCellModel] {
+        return [
+            addMock(level: .eight), addMock(level: .eight), addMock(), addMock(level: .three), addMock(),
+            addMock(), addMock(), addMock(), addMock(isNil: true), addMock(),
+            addMock(level: .four), addMock(), addMock(), addMock(), addMock(),
+            addMock(), addMock(), addMock(), addMock(), addMock(),
+            addMock(), addMock(), addMock(), addMock(), addMock(),
+            addMock(), addMock(isNil: false, level: .five), addMock(), addMock(isNil: false, level: .six), addMock(),
+            addMock(), addMock(), addMock(isNil: true), addMock(), addMock()
+        ]
     }
     
-    private func setupMockContent() -> [Content] {
-        return [
-            Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item()),
-            Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item()),
-            Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item()),
-            Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item()),
-            Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item()),
-            Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item()), Content(item: Item())
-        ]
+    private func addMock(isNil: Bool = false, level: ModuleLevel = .one) -> ItemCollectionViewCellModel {
+        let model = ItemCollectionViewCellModel(
+            item: isNil ? nil : itemModuleAssembly.module(type: .squareWithNumber, level: level),
+            isRootContainerEnabledObservable: isRootContainerEnabled
+        )
+        model.checkDirectionItemIndexAction.bind(to: checkDirectionItemIndexAction).disposed(by: model.disposeBag)
+        
+        return model
     }
 }

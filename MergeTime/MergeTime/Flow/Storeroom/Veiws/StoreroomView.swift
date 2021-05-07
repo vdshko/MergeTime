@@ -14,7 +14,7 @@ public final class StoreroomView: NiblessView {
         .minimumInteritemSpacing(ItemCollectionViewCell.Constants.itemsMargin)
         .minimumLineSpacing(ItemCollectionViewCell.Constants.itemsMargin)
         .isScrollEnabled(false)
-        .background(Asset.Colors.Standart.transparent)
+        .background(Asset.Colors.Standard.transparent)
         .build()
     
     public init() {

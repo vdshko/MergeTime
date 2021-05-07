@@ -44,12 +44,15 @@ extension Asset {
       public static let primary = ColorAsset(name: "Background/primary")
     }
     public enum Specific {
-      public static let itemContentViewBackground = ColorAsset(name: "Specific/itemContentViewBackground")
+      public enum ItemContentViewBackground {
+        public static let evenNumberCell = ColorAsset(name: "Specific/ItemContentViewBackground/evenNumberCell")
+        public static let notEvenNumberCell = ColorAsset(name: "Specific/ItemContentViewBackground/notEvenNumberCell")
+      }
       public static let itemContentViewBorder = ColorAsset(name: "Specific/itemContentViewBorder")
     }
-    public enum Standart {
-      public static let transparent = ColorAsset(name: "Standart/transparent")
-      public static let white = ColorAsset(name: "Standart/white")
+    public enum Standard {
+      public static let transparent = ColorAsset(name: "Standard/transparent")
+      public static let white = ColorAsset(name: "Standard/white")
     }
     public enum Text {
       public static let primary = ColorAsset(name: "Text/primary")

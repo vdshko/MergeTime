@@ -31,7 +31,7 @@ public final class TabBarController: UITabBarController {
         
         tabBar.subviews
             .filter { $0 is UIControl }[itemIndex]
-            .animate(with: .bounce)
+            .animate(with: .reverseAnimation(.bounce))
     }
     
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

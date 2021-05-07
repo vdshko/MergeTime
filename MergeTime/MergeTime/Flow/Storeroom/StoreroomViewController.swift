@@ -10,7 +10,7 @@ import UIKit
 
 final class StoreroomViewController: ViewController<StoreroomView> {
     
-    private let contentItemInteracted = PublishSubject<(item: StoreroomViewModel.Content, location: CGPoint?)>()
+    private let contentItemInteracted = PublishSubject<CGPoint?>()
     private let viewModel: StoreroomViewModel
     private let disposeBag = DisposeBag()
     
@@ -25,23 +25,23 @@ final class StoreroomViewController: ViewController<StoreroomView> {
     private func setupBindings() {
         rootView.itemsCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
         viewModel.contentObservable
-            .bind(to: rootView.itemsCollectionView.rx.items) { [unowned contentItemInteracted] collectionView, item, model in
+            .bind(to: rootView.itemsCollectionView.rx.items) { collectionView, item, model in
                 let cell: ItemCollectionViewCell = collectionView.dequeueReusableCell(IndexPath(item: item, section: 0))
-                cell.setup(with: model, contentItemInteracted: contentItemInteracted)
+                cell.setup(with: model, isEvenNumber: (item + 1) % 2 == 0)
                 
                 return cell
             }
             .disposed(by: disposeBag)
-        contentItemInteracted
-            .map { [weak rootView] interaction -> (item: StoreroomViewModel.Content, location: Int?) in
-                if let location = interaction.location {
-                    return (interaction.item, rootView?.itemsCollectionView.indexPathForItem(at: location)?.row)
-                }
-                
-                return (interaction.item, nil)
+        viewModel.checkDirectionItemIndexAction
+            .map { [weak rootView] in
+                (
+                    selectedItemIndex: rootView?.itemsCollectionView.indexPathForItem(at: $0.cellPosition)?.item,
+                    directionItemIndex: rootView?.itemsCollectionView.indexPathForItem(at: $0.itemPosition)?.item
+                )
             }
-            .bind(to: viewModel.contentItemInteracted)
+            .call(viewModel, type(of: viewModel).updateItems)
             .disposed(by: disposeBag)
+        viewModel.isRootContainerEnabledObservable.bind(to: rootView.itemsCollectionView.rx.isUserInteractionEnabled).disposed(by: disposeBag)
     }
 }
 
