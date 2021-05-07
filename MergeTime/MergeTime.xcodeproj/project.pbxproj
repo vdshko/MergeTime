@@ -117,6 +117,8 @@
 		A1CB2E4C263EDF1000E97764 /* ObservableType+Unwrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CB2E4B263EDF1000E97764 /* ObservableType+Unwrap.swift */; };
 		A1CEF3AE2642C31600BCB65B /* ModuleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CEF3AD2642C31600BCB65B /* ModuleType.swift */; };
 		A1CEF3B02642C45F00BCB65B /* ItemModules+Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CEF3AF2642C45F00BCB65B /* ItemModules+Typealiases.swift */; };
+		A1D157E12645E73000904477 /* CircleWithNumberModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D157E02645E73000904477 /* CircleWithNumberModule.swift */; };
+		A1D157E32645E73D00904477 /* CircleWithNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D157E22645E73D00904477 /* CircleWithNumberView.swift */; };
 		A1E0B732263DDE7500B8721C /* StoreroomFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E0B731263DDE7500B8721C /* StoreroomFlowCoordinator.swift */; };
 		A1E0B739263DDE8500B8721C /* StoreroomFlowAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E0B738263DDE8500B8721C /* StoreroomFlowAssembly.swift */; };
 		A1E0B745263DDFEB00B8721C /* StoreroomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E0B744263DDFEB00B8721C /* StoreroomViewController.swift */; };
@@ -387,6 +389,8 @@
 		A1CB2E4D263EECBA00E97764 /* ItemCollectionViewCell+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemCollectionViewCell+ViewModel.swift"; sourceTree = "<group>"; };
 		A1CEF3AD2642C31600BCB65B /* ModuleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleType.swift; sourceTree = "<group>"; };
 		A1CEF3AF2642C45F00BCB65B /* ItemModules+Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemModules+Typealiases.swift"; sourceTree = "<group>"; };
+		A1D157E02645E73000904477 /* CircleWithNumberModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleWithNumberModule.swift; sourceTree = "<group>"; };
+		A1D157E22645E73D00904477 /* CircleWithNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleWithNumberView.swift; sourceTree = "<group>"; };
 		A1E0B731263DDE7500B8721C /* StoreroomFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreroomFlowCoordinator.swift; sourceTree = "<group>"; };
 		A1E0B738263DDE8500B8721C /* StoreroomFlowAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreroomFlowAssembly.swift; sourceTree = "<group>"; };
 		A1E0B744263DDFEB00B8721C /* StoreroomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreroomViewController.swift; sourceTree = "<group>"; };
@@ -1059,6 +1063,7 @@
 		A198382F2642F62500BEFD89 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				A1D157DF2645E6D900904477 /* CircleWithNumberModule */,
 				A19838322642F6B500BEFD89 /* SquareWithNumberModule */,
 			);
 			path = Modules;
@@ -1155,6 +1160,15 @@
 				A1CEF3AD2642C31600BCB65B /* ModuleType.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		A1D157DF2645E6D900904477 /* CircleWithNumberModule */ = {
+			isa = PBXGroup;
+			children = (
+				A1D157E02645E73000904477 /* CircleWithNumberModule.swift */,
+				A1D157E22645E73D00904477 /* CircleWithNumberView.swift */,
+			);
+			path = CircleWithNumberModule;
 			sourceTree = "<group>";
 		};
 		A1E0B72D263DDD7300B8721C /* Storeroom */ = {
@@ -1876,12 +1890,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1D157E12645E73000904477 /* CircleWithNumberModule.swift in Sources */,
 				A152B8B226430F9500059E21 /* ItemModuleAssembly.swift in Sources */,
 				A1C65EE82633892C0086A56E /* DebugTools+Typealiases.swift in Sources */,
 				A152B8B626432F1D00059E21 /* Rx+Typealiases.swift in Sources */,
 				A19838372642F72400BEFD89 /* Core+Typealiases.swift in Sources */,
 				A11B4F3226359E9600E77E32 /* Assets.swift in Sources */,
 				A19838312642F66800BEFD89 /* SquareWithNumberModule.swift in Sources */,
+				A1D157E32645E73D00904477 /* CircleWithNumberView.swift in Sources */,
 				A19838392642FAEC00BEFD89 /* ItemModuleProtocol.swift in Sources */,
 				A19838342642F6E300BEFD89 /* SquareWithNumberView.swift in Sources */,
 				A1CEF3AE2642C31600BCB65B /* ModuleType.swift in Sources */,

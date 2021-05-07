@@ -1,14 +1,14 @@
 //
-//  SquareWithNumberView.swift
+//  CircleWithNumberView.swift
 //  ItemModules
 //
-//  Created by Vlad Shkodich on 05.05.2021.
+//  Created by Vlad Shkodich on 08.05.2021.
 //
 
 import UIKit
 
-final class SquareWithNumberView: NiblessView {
-
+final class CircleWithNumberView: NiblessView {
+    
     let label: UILabel = Factory.label()
         .textColor(Asset.Colors.Background.primary)
         .textAlignment(.center)
@@ -16,8 +16,7 @@ final class SquareWithNumberView: NiblessView {
         .build()
     
     private let backgroundView: UIView = Factory.view()
-        .background(Asset.Colors.Standard.white)
-        .cornerRadius(9)
+        .background(Asset.Colors.Standard.white, alpha: 0.7)
         .border(color: Asset.Colors.Background.primary, width: 1)
         .build()
     private let maxLebel: UILabel = Factory.label()
@@ -27,6 +26,12 @@ final class SquareWithNumberView: NiblessView {
         .font(typography: .tiny)
         .isHidden(true)
         .build()
+    
+    override var bounds: CGRect {
+        didSet {
+            backgroundView.layer.cornerRadius = (bounds.width - 2 * Constants.offset) / 2
+        }
+    }
     
     init(with number: Int, isMaxLevel: Bool) {
         super.init(frame: .zero)
@@ -55,7 +60,7 @@ final class SquareWithNumberView: NiblessView {
     }
     
     private func layout() {
-        backgroundView.layout(in: self, with: .all(10))
+        backgroundView.layout(in: self, with: .all(Constants.offset))
         label.layout(in: backgroundView)
         backgroundView.addSubview(maxLebel)
         maxLebel.layout {
@@ -63,5 +68,13 @@ final class SquareWithNumberView: NiblessView {
             $0.trailing.equal(to: trailingAnchor)
             $0.leading.equal(to: leadingAnchor)
         }
+    }
+}
+
+private extension CircleWithNumberView {
+    
+    enum Constants {
+        
+        static let offset: CGFloat = 10
     }
 }

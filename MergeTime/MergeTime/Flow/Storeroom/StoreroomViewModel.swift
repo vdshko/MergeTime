@@ -81,18 +81,18 @@ extension StoreroomViewModel {
     private func setupMockContent() -> [ItemCollectionViewCellModel] {
         return [
             addMock(level: .eight), addMock(level: .eight), addMock(), addMock(level: .three), addMock(),
-            addMock(), addMock(), addMock(), addMock(isNil: true), addMock(),
-            addMock(level: .four), addMock(), addMock(), addMock(), addMock(),
-            addMock(), addMock(), addMock(), addMock(), addMock(),
-            addMock(), addMock(), addMock(), addMock(), addMock(),
-            addMock(), addMock(isNil: false, level: .five), addMock(), addMock(isNil: false, level: .six), addMock(),
+            addMock(), addMock(level: .one, moduleType: .circleWithNumber), addMock(), addMock(isNil: true), addMock(),
+            addMock(level: .four, moduleType: .circleWithNumber), addMock(), addMock(level: .one, moduleType: .circleWithNumber), addMock(), addMock(),
+            addMock(level: .one, moduleType: .circleWithNumber), addMock(), addMock(), addMock(level: .one, moduleType: .circleWithNumber), addMock(),
+            addMock(), addMock(), addMock(level: .three, moduleType: .circleWithNumber), addMock(), addMock(level: .one, moduleType: .circleWithNumber),
+            addMock(level: .one, moduleType: .circleWithNumber), addMock(isNil: false, level: .five), addMock(), addMock(isNil: false, level: .six), addMock(),
             addMock(), addMock(), addMock(isNil: true), addMock(), addMock()
         ]
     }
     
-    private func addMock(isNil: Bool = false, level: ModuleLevel = .one) -> ItemCollectionViewCellModel {
+    private func addMock(isNil: Bool = false, level: ModuleLevel = .one, moduleType: ModuleType = .squareWithNumber) -> ItemCollectionViewCellModel {
         let model = ItemCollectionViewCellModel(
-            item: isNil ? nil : itemModuleAssembly.module(type: .squareWithNumber, level: level),
+            item: isNil ? nil : itemModuleAssembly.module(type: moduleType, level: level),
             isRootContainerEnabledObservable: isRootContainerEnabled
         )
         model.checkDirectionItemIndexAction.bind(to: checkDirectionItemIndexAction).disposed(by: model.disposeBag)

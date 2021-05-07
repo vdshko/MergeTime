@@ -7,18 +7,18 @@
 
 import UIKit
 
-public class SquareWithNumberModule: ItemModuleProtocol {
+final class SquareWithNumberModule: ItemModuleProtocol {
     
-    public let view: UIView
-    public let moduleType: ModuleType
-    public let moduleLevel: ModuleLevel
-    public let isDragging = BehaviorRelay<Bool>(value: false)
-    public let moveBackAction = PublishSubject<Void>()
-    public let maxLevel: ModuleLevel = .six
+    let view: UIView
+    let moduleType: ModuleType
+    let moduleLevel: ModuleLevel
+    let isDragging = BehaviorRelay<Bool>(value: false)
+    let moveBackAction = PublishSubject<Void>()
+    let maxLevel: ModuleLevel = .six
     
-    public init(level: ModuleLevel) {
+    init(level: ModuleLevel) {
         moduleLevel = min(level, maxLevel)
-        self.view = SquareWithNumberView(with: moduleLevel.rawValue)
+        self.view = SquareWithNumberView(with: moduleLevel.rawValue, isMaxLevel: moduleLevel == maxLevel)
         self.moduleType = .squareWithNumber
     }
 }

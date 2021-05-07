@@ -49,6 +49,7 @@ extension Asset {
         public static let notEvenNumberCell = ColorAsset(name: "Specific/ItemContentViewBackground/notEvenNumberCell")
       }
       public static let itemContentViewBorder = ColorAsset(name: "Specific/itemContentViewBorder")
+      public static let itemMaxLevelTint = ColorAsset(name: "Specific/itemMaxLevelTint")
     }
     public enum Standard {
       public static let transparent = ColorAsset(name: "Standard/transparent")

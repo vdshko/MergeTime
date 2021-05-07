@@ -17,8 +17,8 @@ public final class ItemModuleAssembly: ItemModuleAssemblyProtocol {
     
     public func module(type: ModuleType, level: ModuleLevel) -> ItemModuleProtocol {
         switch type {
-        case .squareWithNumber:
-            return SquareWithNumberModule(level: level)
+        case .squareWithNumber: return SquareWithNumberModule(level: level)
+        case .circleWithNumber: return CircleWithNumberModule(level: level)
         }
     }
     
