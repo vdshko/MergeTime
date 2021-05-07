@@ -19,7 +19,7 @@ final class StoreroomViewModel {
     var isRootContainerEnabledObservable: Observable<Bool> {
         return isRootContainerEnabled.distinctUntilChanged().skip(1)
     }
-    let checkDirectionItemIndexAction = PublishSubject<(location: CGPoint, itemObservable: BehaviorRelay<ItemModuleProtocol?>)>()
+    let checkDirectionItemIndexAction = PublishSubject<(cellPosition: CGPoint, itemPosition: CGPoint)>()
     
     let isRootContainerEnabled = BehaviorRelay<Bool>(value: false)
     
@@ -34,18 +34,23 @@ final class StoreroomViewModel {
         content.accept(setupMockContent())
     }
     
-    func updateItems(options: (directionItemIndex: Int?, selectedItemObservable: BehaviorRelay<ItemModuleProtocol?>)) {
-        options.selectedItemObservable.value?.isDragging.accept(false)
+    func updateItems(indexes: (selectedItemIndex: Int?, directionItemIndex: Int?)) {
+        guard let selectedIndex = indexes.selectedItemIndex,
+              let selectedItemModel = content.value?[selectedIndex] else {
+            return
+        }
+        
+        selectedItemModel.item.value?.isDragging.accept(false)
 
-        guard let index = options.directionItemIndex,
-              let directItemModel = content.value?[index] else {
-            options.selectedItemObservable.value?.moveBackAction.onNext(())
+        guard let directionIndex = indexes.directionItemIndex,
+              let directItemModel = content.value?[directionIndex] else {
+            selectedItemModel.item.value?.moveBackAction.onNext(())
 
             return
         }
 
         if let directItem = directItemModel.item.value,
-           let selectedItem = options.selectedItemObservable.value {
+           let selectedItem = selectedItemModel.item.value {
 
             // handle merge with non empty direct content
             guard directItem.isEqual(to: selectedItem),
@@ -58,12 +63,12 @@ final class StoreroomViewModel {
             }
 
             directItemModel.item.accept(itemModuleAssembly.nextLevel(for: selectedItem))
-            options.selectedItemObservable.accept(nil)
+            selectedItemModel.item.accept(nil)
         } else {
 
             // handle merge with empty direct content
-            directItemModel.item.accept(options.selectedItemObservable.value)
-            options.selectedItemObservable.accept(nil)
+            directItemModel.item.accept(selectedItemModel.item.value)
+            selectedItemModel.item.accept(nil)
         }
     }
 }

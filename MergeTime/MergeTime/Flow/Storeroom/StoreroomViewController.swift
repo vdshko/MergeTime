@@ -34,7 +34,10 @@ final class StoreroomViewController: ViewController<StoreroomView> {
             .disposed(by: disposeBag)
         viewModel.checkDirectionItemIndexAction
             .map { [weak rootView] in
-                (rootView?.itemsCollectionView.indexPathForItem(at: $0.location)?.item, $0.itemObservable)
+                (
+                    selectedItemIndex: rootView?.itemsCollectionView.indexPathForItem(at: $0.cellPosition)?.item,
+                    directionItemIndex: rootView?.itemsCollectionView.indexPathForItem(at: $0.itemPosition)?.item
+                )
             }
             .call(viewModel, type(of: viewModel).updateItems)
             .disposed(by: disposeBag)

@@ -13,10 +13,10 @@ final class ItemCollectionViewCellModel {
     
     let touchesBeganObservable = PublishSubject<Void>()
     let touchesMovedObservable = PublishSubject<CGPoint?>()
-    let touchesEndedObservable = PublishSubject<CGPoint?>()
+    let touchesEndedObservable = PublishSubject<(cellPosition: CGPoint?, itemPosition: CGPoint?)>()
     let touchesCancelledObservable = PublishSubject<Void>()
     let bringCellToFrontObservable = PublishSubject<Void>()
-    let checkDirectionItemIndexAction = PublishSubject<(location: CGPoint, itemObservable: BehaviorRelay<ItemModuleProtocol?>)>()
+    let checkDirectionItemIndexAction = PublishSubject<(cellPosition: CGPoint, itemPosition: CGPoint)>()
     let updateCellWithViewObservable = BehaviorRelay<UIView?>(value: nil)
     let moveViewToPositionObservable = PublishSubject<CGPoint?>()
     let item: BehaviorRelay<ItemModuleProtocol?>
@@ -66,12 +66,11 @@ final class ItemCollectionViewCellModel {
             })
             .disposed(by: disposeBag)
         touchesEndedObservable
-            .withLatestFrom(Observable.just(item)) { ($0, $1) }
-            .filter { $0.1.value != nil }
-            .subscribe(onNext: { [weak checkDirectionItemIndexAction] position, itemObservable in
-                if let position = position,
-                   itemObservable.value != nil {
-                    checkDirectionItemIndexAction?.onNext((location: position, itemObservable: itemObservable))
+            .filter { [weak item] _ in item?.value != nil }
+            .subscribe(onNext: { [weak checkDirectionItemIndexAction] cellPosition, itemPosition in
+                if let cellPosition = cellPosition,
+                   let itemPosition = itemPosition {
+                    checkDirectionItemIndexAction?.onNext((cellPosition: cellPosition, itemPosition: itemPosition))
                 }
             })
             .disposed(by: disposeBag)

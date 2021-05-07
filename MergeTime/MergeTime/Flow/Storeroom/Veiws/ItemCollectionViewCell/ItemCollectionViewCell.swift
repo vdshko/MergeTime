@@ -16,7 +16,7 @@ public final class ItemCollectionViewCell: CollectionViewCell {
     
     public let touchesBeganObservable = PublishSubject<Void>()
     public let touchesMovedObservable = PublishSubject<CGPoint?>()
-    public let touchesEndedObservable = PublishSubject<CGPoint?>()
+    public let touchesEndedObservable = PublishSubject<(cellPosition: CGPoint?, itemPosition: CGPoint?)>()
     public let touchesCancelledObservable = PublishSubject<Void>()
     
     private var isDragging = false
@@ -114,7 +114,10 @@ extension ItemCollectionViewCell {
     public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         
-        touchesEndedObservable.onNext(touches.first?.location(in: superview))
+        touchesEndedObservable.onNext((
+            cellPosition: contentView.convert(contentView.frame.origin, to: superview),
+            itemPosition: touches.first?.location(in: superview)
+        ))
     }
     
     public override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
