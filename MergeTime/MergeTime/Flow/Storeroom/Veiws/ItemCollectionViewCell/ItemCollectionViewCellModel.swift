@@ -43,10 +43,11 @@ final class ItemCollectionViewCellModel {
             .disposed(by: disposeBag)
         touchesMovedObservable
             .compactMap { $0 }
-            .withLatestFrom(item.compactMap { $0 }) { ($0, $1) }
+            .withLatestFrom(item) { ($0, $1) }
+            .filter { $0.1 != nil }
             .subscribe(onNext: { [weak moveViewToPositionObservable, weak bringCellToFrontObservable] position, item in
-                if !item.isDragging.value {
-                    item.isDragging.accept(true)
+                if item?.isDragging.value == false {
+                    item?.isDragging.accept(true)
                     bringCellToFrontObservable?.onNext(())
                 }
                 
@@ -54,9 +55,11 @@ final class ItemCollectionViewCellModel {
             })
             .disposed(by: disposeBag)
         touchesCancelledObservable
-            .subscribe(onNext: { [weak moveViewToPositionObservable, weak item] in
-                if item?.value?.isDragging.value == true {
-                    item?.value?.isDragging.accept(false)
+            .withLatestFrom(Observable.just(item))
+            .filter { $0.value != nil }
+            .subscribe(onNext: { [weak moveViewToPositionObservable] itemObservable in
+                if itemObservable.value?.isDragging.value == true {
+                    itemObservable.value?.isDragging.accept(false)
                 }
                 
                 moveViewToPositionObservable?.onNext(nil)
@@ -64,6 +67,7 @@ final class ItemCollectionViewCellModel {
             .disposed(by: disposeBag)
         touchesEndedObservable
             .withLatestFrom(Observable.just(item)) { ($0, $1) }
+            .filter { $0.1.value != nil }
             .subscribe(onNext: { [weak checkDirectionItemIndexAction] position, itemObservable in
                 if let position = position,
                    itemObservable.value != nil {
