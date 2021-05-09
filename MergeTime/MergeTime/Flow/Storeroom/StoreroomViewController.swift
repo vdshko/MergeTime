@@ -34,9 +34,17 @@ final class StoreroomViewController: ViewController<StoreroomView> {
             .disposed(by: disposeBag)
         viewModel.checkDirectionItemIndexAction
             .map { [weak rootView] in
-                (
+                var directPosition: CGPoint?
+                let directionItemIndexPath = rootView?.itemsCollectionView.indexPathForItem(at: $0.itemPosition)
+                if let indexPath = directionItemIndexPath,
+                   let cell = rootView?.itemsCollectionView.cellForItem(at: indexPath) {
+                    directPosition = cell.contentView.convert(CGPoint(x: -$0.cellPosition.x, y: -$0.cellPosition.y), to: cell.superview)
+                }
+                
+                return DraggingOptions(
                     selectedItemIndex: rootView?.itemsCollectionView.indexPathForItem(at: $0.cellPosition)?.item,
-                    directionItemIndex: rootView?.itemsCollectionView.indexPathForItem(at: $0.itemPosition)?.item
+                    directionItemIndex: directionItemIndexPath?.item,
+                    directPosition: directPosition
                 )
             }
             .call(viewModel, type(of: viewModel).updateItems)

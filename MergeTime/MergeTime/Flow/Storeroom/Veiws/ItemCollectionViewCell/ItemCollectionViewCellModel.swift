@@ -18,7 +18,7 @@ final class ItemCollectionViewCellModel {
     let bringCellToFrontObservable = PublishSubject<Void>()
     let checkDirectionItemIndexAction = PublishSubject<(cellPosition: CGPoint, itemPosition: CGPoint)>()
     let updateCellWithOptionsObservable = BehaviorRelay<(view: UIView?, needToAnimate: Bool?)>(value: (nil, nil))
-    let moveViewToPositionObservable = PublishSubject<CGPoint?>()
+    let moveViewToPositionObservable = PublishSubject<(position: CGPoint?, completion: (() -> Void)?)>()
     let changeHighlightedState = PublishSubject<Bool>()
     let itemSelected = PublishSubject<ItemModuleProtocol>()
     let item: BehaviorRelay<ItemModuleProtocol?>
@@ -57,7 +57,7 @@ final class ItemCollectionViewCellModel {
                     bringCellToFrontObservable?.onNext(())
                 }
                 
-                moveViewToPositionObservable?.onNext(position)
+                moveViewToPositionObservable?.onNext((position, nil))
             })
             .disposed(by: disposeBag)
         touchesCancelledObservable
@@ -69,7 +69,7 @@ final class ItemCollectionViewCellModel {
                     itemObservable.value?.isDragging.accept(false)
                 }
                 
-                moveViewToPositionObservable?.onNext(nil)
+                moveViewToPositionObservable?.onNext((nil, nil))
             })
             .disposed(by: disposeBag)
         touchesEndedObservable
@@ -99,7 +99,12 @@ final class ItemCollectionViewCellModel {
         
         item.moveBackAction
             .subscribe(onNext: { [weak moveViewToPositionObservable] in
-                moveViewToPositionObservable?.onNext(nil)
+                moveViewToPositionObservable?.onNext((nil, nil))
+            })
+            .disposed(by: itemDisposeBag)
+        item.moveToDirectPositionAction
+            .subscribe(onNext: { [weak moveViewToPositionObservable] position, completion in
+                moveViewToPositionObservable?.onNext((position, completion))
             })
             .disposed(by: itemDisposeBag)
         item.isDragging

@@ -36,24 +36,24 @@ final class StoreroomViewModel {
         setupBinding()
     }
     
-    func updateItems(indexes: (selectedItemIndex: Int?, directionItemIndex: Int?)) {
-        guard let selectedIndex = indexes.selectedItemIndex,
+    func updateItems(with draggingOptions: DraggingOptions) {
+        guard let selectedIndex = draggingOptions.selectedItemIndex,
               let selectedItemModel = content.value?[selectedIndex] else {
             return
         }
-        
-        selectedItemModel.item.value?.isDragging.accept(false)
 
-        guard let directionIndex = indexes.directionItemIndex,
+        guard let directionIndex = draggingOptions.directionItemIndex,
               let directItemModel = content.value?[directionIndex] else {
             selectedItemModel.item.value?.moveBackAction.onNext(())
+            selectedItemModel.item.value?.isDragging.accept(false)
 
             return
         }
 
         if let directItem = directItemModel.item.value,
            let selectedItem = selectedItemModel.item.value {
-
+            selectedItem.isDragging.accept(false)
+            
             // handle merge with non empty direct content
             guard directItem.isEqual(to: selectedItem),
                !directItem.isSameObject(to: selectedItem),
@@ -74,11 +74,20 @@ final class StoreroomViewModel {
         } else {
 
             // handle merge with empty direct content
-            directItemModel.item.accept(selectedItemModel.item.value)
-            selectedItemModel.item.accept(nil)
-            
-            // moved item need to be mark as selected after dragging
-            directItemModel.item.value?.isSelected.accept(true)
+            selectedItemModel.item.value?.isSelected.accept(false)
+            selectedItemModel.item.value?.moveToDirectPositionAction.onNext(
+                (
+                    position: draggingOptions.directPosition ?? .zero,
+                    completion: {
+                        selectedItemModel.item.value?.isDragging.accept(false)
+                        directItemModel.item.accept(selectedItemModel.item.value)
+                        selectedItemModel.item.accept(nil)
+                        
+                        // moved item need to be mark as selected after dragging
+                        directItemModel.item.value?.isSelected.accept(true)
+                    }
+                )
+            )
         }
     }
     
@@ -100,7 +109,7 @@ extension StoreroomViewModel {
 
     private func setupMockContent() -> [ItemCollectionViewCellModel] {
         return [
-            addMock(level: .eight), addMock(level: .eight), addMock(), addMock(level: .three), addMock(),
+            addMock(isNil: true), addMock(level: .eight), addMock(), addMock(level: .three), addMock(),
             addMock(), addMock(level: .one, moduleType: .circleWithNumber), addMock(), addMock(isNil: true), addMock(),
             addMock(level: .four, moduleType: .circleWithNumber), addMock(), addMock(level: .one, moduleType: .circleWithNumber), addMock(), addMock(),
             addMock(level: .one, moduleType: .circleWithNumber), addMock(), addMock(), addMock(level: .one, moduleType: .circleWithNumber), addMock(),
@@ -110,7 +119,7 @@ extension StoreroomViewModel {
         ]
     }
     
-    private func addMock(isNil: Bool = false, level: ModuleLevel = .one, moduleType: ModuleType = .squareWithNumber) -> ItemCollectionViewCellModel {
+    private func addMock(isNil: Bool = true, level: ModuleLevel = .one, moduleType: ModuleType = .squareWithNumber) -> ItemCollectionViewCellModel {
         let model = ItemCollectionViewCellModel(
             item: isNil ? nil : itemModuleAssembly.module(type: moduleType, level: level),
             isRootContainerEnabledObservable: isRootContainerEnabled

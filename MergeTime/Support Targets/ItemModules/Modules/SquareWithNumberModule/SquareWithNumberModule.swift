@@ -5,7 +5,8 @@
 //  Created by Vlad Shkodich on 05.05.2021.
 //
 
-import UIKit
+import class UIKit.UIView
+import struct UIKit.CGPoint
 
 final class SquareWithNumberModule: ItemModuleProtocol, RepositoryTypeProtocol {
     
@@ -16,6 +17,7 @@ final class SquareWithNumberModule: ItemModuleProtocol, RepositoryTypeProtocol {
     let moduleLevel: ModuleLevel
     let isDragging = BehaviorRelay<Bool>(value: false)
     let moveBackAction = PublishSubject<Void>()
+    let moveToDirectPositionAction = PublishSubject<(position: CGPoint, completion: () -> Void)>()
     let maxLevel: ModuleLevel = .six
     let readyToEmitItems = BehaviorRelay<Bool>(value: true)
     let isSelected = BehaviorRelay<Bool>(value: false)

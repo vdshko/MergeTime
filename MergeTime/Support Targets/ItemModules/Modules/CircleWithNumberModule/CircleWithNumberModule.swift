@@ -6,6 +6,7 @@
 //
 
 import class UIKit.UIView
+import struct UIKit.CGPoint
 
 final class CircleWithNumberModule: ItemModuleProtocol {
     
@@ -16,6 +17,7 @@ final class CircleWithNumberModule: ItemModuleProtocol {
     let moduleLevel: ModuleLevel
     let isDragging = BehaviorRelay<Bool>(value: false)
     let moveBackAction = PublishSubject<Void>()
+    let moveToDirectPositionAction = PublishSubject<(position: CGPoint, completion: () -> Void)>()
     let maxLevel: ModuleLevel = .four
     let isSelected = BehaviorRelay<Bool>(value: false)
     

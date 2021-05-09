@@ -6,6 +6,7 @@
 //
 
 import class UIKit.UIView
+import struct UIKit.CGPoint
 
 public protocol ItemModuleProtocol: AnyObject {
     
@@ -14,6 +15,7 @@ public protocol ItemModuleProtocol: AnyObject {
     var moduleLevel: ModuleLevel { get }
     var isDragging: BehaviorRelay<Bool> { get }
     var moveBackAction: PublishSubject<Void> { get }
+    var moveToDirectPositionAction: PublishSubject<(position: CGPoint, completion: () -> Void)> { get }
     var maxLevel: ModuleLevel { get }
     var isMaxLevel: Bool { get }
     var isSelected: BehaviorRelay<Bool> { get }
@@ -27,7 +29,7 @@ public protocol ItemModuleProtocol: AnyObject {
 }
 
 public extension ItemModuleProtocol {
-
+    
     var isMaxLevel: Bool {
         return moduleLevel == maxLevel
     }

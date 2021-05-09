@@ -53,18 +53,22 @@ public final class ItemCollectionViewCell: CollectionViewCell {
         }
     }
     
-    public func moveViewToPosition(_ position: CGPoint?) {
-        guard let position = position,
+    public func moveViewToPosition(options: (position: CGPoint?, completion: (() -> Void)?)) {
+        guard let position = options.position,
               let view = contentView.subviews.last else {
             contentView.subviews.last?.animate(with: .nonReverseAnimation(.moveToPoint()))
             
             return
         }
         
-        view.frame.origin = CGPoint(
-            x: position.x - view.frame.width / 2,
-            y: position.y - view.frame.height / 2
-        )
+        if let completion = options.completion {
+            view.animate(with: .nonReverseAnimation(.moveToPoint(point: position, completion: completion)))
+        } else {
+            view.frame.origin = CGPoint(
+                x: position.x - view.frame.width / 2,
+                y: position.y - view.frame.height / 2
+            )
+        }
     }
     
     public func removeOldView() {
@@ -99,7 +103,7 @@ extension ItemCollectionViewCell {
     
     enum Constants {
         
-        static let itemsMargin: CGFloat = 4
+        static let itemsMargin: CGFloat = 0.5
         
         fileprivate static let highlightViewMargin: CGFloat = 5
         fileprivate static let cornerRadius: CGFloat = 9

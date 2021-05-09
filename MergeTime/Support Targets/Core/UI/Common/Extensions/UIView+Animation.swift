@@ -22,7 +22,7 @@ public enum ReverseAnimation: String {
 
 public enum NonReverseAnimation {
     
-    case moveToPoint(point: CGPoint = .zero)
+    case moveToPoint(point: CGPoint = .zero, completion: (() -> Void)? = nil)
 }
 
 private extension ReverseAnimation {
@@ -83,13 +83,15 @@ private extension NonReverseAnimation {
     
     func animation(for layer: CALayer) {
         switch self {
-        case .moveToPoint(let point): moveToPointAnimation(for: layer, point: point)
+        case let .moveToPoint(point, completion): moveToPointAnimation(for: layer, point: point, completion: completion)
         }
     }
     
-    private func moveToPointAnimation(for layer: CALayer, point: CGPoint) {
+    private func moveToPointAnimation(for layer: CALayer, point: CGPoint, completion: (() -> Void)?) {
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut) {
-            layer.frame.origin = .zero
+            layer.frame.origin = point
+        } completion: { _ in
+            completion?()
         }
     }
 }

@@ -82,6 +82,7 @@
 		A152B8B226430F9500059E21 /* ItemModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A152B8B126430F9500059E21 /* ItemModuleAssembly.swift */; };
 		A152B8B426431E6300059E21 /* ModuleLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A152B8B326431E6300059E21 /* ModuleLevel.swift */; };
 		A152B8B626432F1D00059E21 /* Rx+Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A152B8B526432F1D00059E21 /* Rx+Typealiases.swift */; };
+		A157E0E026482E6E0059B38E /* DraggingOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A157E0DF26482E6E0059B38E /* DraggingOptions.swift */; };
 		A15E4214262C68E30074980D /* Resources.h in Headers */ = {isa = PBXBuildFile; fileRef = A15E4212262C68E30074980D /* Resources.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A15E4217262C68E30074980D /* Resources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15E4210262C68E30074980D /* Resources.framework */; };
 		A15E4218262C68E30074980D /* Resources.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A15E4210262C68E30074980D /* Resources.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -348,6 +349,7 @@
 		A152B8B126430F9500059E21 /* ItemModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModuleAssembly.swift; sourceTree = "<group>"; };
 		A152B8B326431E6300059E21 /* ModuleLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleLevel.swift; sourceTree = "<group>"; };
 		A152B8B526432F1D00059E21 /* Rx+Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Typealiases.swift"; sourceTree = "<group>"; };
+		A157E0DF26482E6E0059B38E /* DraggingOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggingOptions.swift; sourceTree = "<group>"; };
 		A15E4210262C68E30074980D /* Resources.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Resources.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A15E4212262C68E30074980D /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Resources.h; sourceTree = "<group>"; };
 		A15E4213262C68E30074980D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -960,6 +962,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		A157E0DE26482E590059B38E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A157E0DF26482E6E0059B38E /* DraggingOptions.swift */,
+				A1E0B752263DE01400B8721C /* StoreroomModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A15E4211262C68E30074980D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1178,7 +1189,7 @@
 			isa = PBXGroup;
 			children = (
 				A1E0B730263DDE3B00B8721C /* Flow */,
-				A1E0B752263DE01400B8721C /* StoreroomModel.swift */,
+				A157E0DE26482E590059B38E /* Models */,
 				A1E0B744263DDFEB00B8721C /* StoreroomViewController.swift */,
 				A1E0B74B263DDFFF00B8721C /* StoreroomViewModel.swift */,
 				A1E0B759263DE01700B8721C /* Veiws */,
@@ -1776,6 +1787,7 @@
 				A138CC3C263E067400486070 /* RoadViewController.swift in Sources */,
 				A1E0B753263DE01400B8721C /* StoreroomModel.swift in Sources */,
 				A1C7CB45262C958700ACBB82 /* ApplicationFlowService.swift in Sources */,
+				A157E0E026482E6E0059B38E /* DraggingOptions.swift in Sources */,
 				A1C65ED7263388C00086A56E /* DebugTools+Typealiases.swift in Sources */,
 				A138CC35263E056200486070 /* RoadModel.swift in Sources */,
 				A116DFBC2633678B0095F03F /* NavigationEventDrivenProtocol.swift in Sources */,
