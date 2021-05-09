@@ -16,6 +16,8 @@ public enum AnimationStyle {
 public enum ReverseAnimation: String {
     
     case bounce
+    case autoreverseSizingWithOpacity
+    case smallBounce
 }
 
 public enum NonReverseAnimation {
@@ -28,11 +30,14 @@ private extension ReverseAnimation {
     enum Keys {
         
         static let transformScale = "transform.scale"
+        static let opacity = "opacity"
     }
     
     var animation: CAAnimation {
         switch self {
         case .bounce: return bounceAnimation()
+        case .autoreverseSizingWithOpacity: return sizingWithOpacityAnimation()
+        case .smallBounce: return smallBounceAnimation()
         }
     }
     
@@ -40,6 +45,33 @@ private extension ReverseAnimation {
         let animation = CAKeyframeAnimation(keyPath: Keys.transformScale)
         animation.values = [1.15, 0.85, 1.05, 0.95, 1]
         animation.duration = TimeInterval(0.4)
+        animation.calculationMode = .cubic
+        animation.isRemovedOnCompletion = true
+        
+        return animation
+    }
+    
+    private func sizingWithOpacityAnimation() -> CAAnimation {
+        let transformScaleAnimation = CABasicAnimation(keyPath: Keys.transformScale)
+        transformScaleAnimation.toValue = 1.04
+        
+        let opacityAnimation = CABasicAnimation(keyPath: Keys.opacity)
+        opacityAnimation.fromValue = 1.0
+        opacityAnimation.toValue = 0.35
+        
+        let group = CAAnimationGroup()
+        group.animations = [transformScaleAnimation, opacityAnimation]
+        group.autoreverses = true
+        group.duration = TimeInterval(1.5)
+        group.repeatCount = .infinity
+        
+        return group
+    }
+    
+    private func smallBounceAnimation() -> CAAnimation {
+        let animation = CAKeyframeAnimation(keyPath: Keys.transformScale)
+        animation.values = [0.6, 1.3, 1.0]
+        animation.duration = TimeInterval(0.3)
         animation.calculationMode = .cubic
         animation.isRemovedOnCompletion = true
         

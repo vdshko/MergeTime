@@ -7,17 +7,18 @@
 
 import UIKit
 import class RxSwift.PublishSubject
-import class RxSwift.DisposeBag
 
 public final class ItemCollectionViewCell: CollectionViewCell {
-    
-    public let moveStarted = PublishSubject<Void>()
-    public let moveEnded = PublishSubject<CGPoint?>()
     
     public let touchesBeganObservable = PublishSubject<Void>()
     public let touchesMovedObservable = PublishSubject<CGPoint?>()
     public let touchesEndedObservable = PublishSubject<(cellPosition: CGPoint?, itemPosition: CGPoint?)>()
     public let touchesCancelledObservable = PublishSubject<Void>()
+    
+    private let highlightView: UIView = Factory.view()
+        .background(Asset.Colors.Standard.transparent)
+        .isHidden(true)
+        .build()
     
     private var isDragging = false
     
@@ -26,15 +27,13 @@ public final class ItemCollectionViewCell: CollectionViewCell {
         
         clipsToBounds = false
         contentView.clipsToBounds = false
-        contentView.layer.cornerRadius = 9
-//        contentView.layer.borderWidth = 1
-//        contentView.layer.borderColor = Asset.Colors.Specific.itemContentViewBorder.color.cgColorDynamic
+        contentView.layer.cornerRadius = Constants.cornerRadius
     }
     
-    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-
-//        contentView.layer.borderColor = Asset.Colors.Specific.itemContentViewBorder.color.cgColorDynamic
+    public override var bounds: CGRect {
+        didSet {
+            updateHighlightViewBorder()
+        }
     }
     
     public override func prepareForReuse() {
@@ -43,9 +42,15 @@ public final class ItemCollectionViewCell: CollectionViewCell {
         removeOldView()
     }
     
-    public func updateCell(with view: UIView?) {
+    public func updateCell(with options: (view: UIView?, needToAnimate: Bool?)) {
         removeOldView()
-        view?.layout(in: contentView)
+        if let view = options.view {
+            highlightView.layout(in: contentView, with: .all(Constants.highlightViewMargin))
+            view.layout(in: contentView)
+            if options.needToAnimate == true {
+                view.animate(with: .reverseAnimation(.smallBounce))
+            }
+        }
     }
     
     public func moveViewToPosition(_ position: CGPoint?) {
@@ -76,6 +81,16 @@ public final class ItemCollectionViewCell: CollectionViewCell {
         // WORKAROUND: - need to use superview?.insertSubview() instead of superview?.bringSubviewToFront() because of UICollectionView cells specific
         superview?.insertSubview(self, aboveSubview: superview!.subviews.last!)
     }
+    
+    public func changeHighlightedState(highlighted: Bool) {
+        highlightView.layer.removeAllAnimations()
+        if highlighted {
+            highlightView.isHidden = false
+            highlightView.animate(with: .reverseAnimation(.autoreverseSizingWithOpacity))
+        } else {
+            highlightView.isHidden = true
+        }
+    }
 }
 
 // MARK: - Cell sizing
@@ -85,6 +100,9 @@ extension ItemCollectionViewCell {
     enum Constants {
         
         static let itemsMargin: CGFloat = 4
+        
+        fileprivate static let highlightViewMargin: CGFloat = 5
+        fileprivate static let cornerRadius: CGFloat = 9
     }
     
     public static func designedSize(for contentSize: CGSize, itemsInLine: Int = 5) -> CGSize {
@@ -124,5 +142,65 @@ extension ItemCollectionViewCell {
         super.touchesCancelled(touches, with: event)
         
         touchesCancelledObservable.onNext(())
+    }
+}
+
+// MARK: - HighlightView styling
+
+private extension ItemCollectionViewCell {
+    
+    func updateHighlightViewBorder() {
+        // remove previously added sublayers
+        highlightView.layer.sublayers?.removeAll()
+        
+        let width = bounds.width - Constants.highlightViewMargin * 2
+        let height = bounds.height - Constants.highlightViewMargin * 2
+        let margin: CGFloat = 3
+        
+        let cornerPath = UIBezierPath()
+        
+        // rightTopCorner
+        cornerPath.move(to: CGPoint(x: (width - width / 4), y: 0))
+        cornerPath.addLine(to: CGPoint(x: width, y: 0))
+        cornerPath.addLine(to: CGPoint(x: width, y: height / 4))
+        cornerPath.addLine(to: CGPoint(x: (width - margin), y: height / 4))
+        cornerPath.addLine(to: CGPoint(x: (width - margin), y: margin))
+        cornerPath.addLine(to: CGPoint(x: (width - width / 4), y: margin))
+        cornerPath.addLine(to: CGPoint(x: (width - width / 4), y: 0))
+        
+        // rightBottomCorner
+        cornerPath.move(to: CGPoint(x: (width - width / 4), y: height))
+        cornerPath.addLine(to: CGPoint(x: width, y: height))
+        cornerPath.addLine(to: CGPoint(x: width, y: (height - height / 4)))
+        cornerPath.addLine(to: CGPoint(x: (width - margin), y: (height - height / 4)))
+        cornerPath.addLine(to: CGPoint(x: (width - margin), y: (height - margin)))
+        cornerPath.addLine(to: CGPoint(x: (width - width / 4), y: (height - margin)))
+        cornerPath.addLine(to: CGPoint(x: (width - width / 4), y: height))
+        
+        // leftTopCorner
+        cornerPath.move(to: CGPoint(x: 0, y: 0))
+        cornerPath.addLine(to: CGPoint(x: 0, y: height / 4))
+        cornerPath.addLine(to: CGPoint(x: margin, y: height / 4))
+        cornerPath.addLine(to: CGPoint(x: margin, y: margin))
+        cornerPath.addLine(to: CGPoint(x: width / 4, y: margin))
+        cornerPath.addLine(to: CGPoint(x: width / 4, y: 0))
+        cornerPath.addLine(to: CGPoint(x: 0, y: 0))
+        
+        // leftBottomCorner
+        cornerPath.move(to: CGPoint(x: 0, y: height))
+        cornerPath.addLine(to: CGPoint(x: width / 4, y: height))
+        cornerPath.addLine(to: CGPoint(x: width / 4, y: (height - margin)))
+        cornerPath.addLine(to: CGPoint(x: margin, y: (height - margin)))
+        cornerPath.addLine(to: CGPoint(x: margin, y: (height - height / 4)))
+        cornerPath.addLine(to: CGPoint(x: 0, y: (height - height / 4)))
+        cornerPath.addLine(to: CGPoint(x: 0, y: height))
+        
+        let layer = CAShapeLayer()
+        layer.path = cornerPath.cgPath
+        layer.strokeColor = Asset.Colors.Specific.itemContentViewBorder.color.cgColor
+        layer.fillColor = Asset.Colors.Specific.itemMaxLevelTint.color.cgColor
+        layer.lineWidth = 0.5
+        
+        highlightView.layer.addSublayer(layer)
     }
 }

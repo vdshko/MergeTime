@@ -103,6 +103,7 @@
 		A19838372642F72400BEFD89 /* Core+Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19838362642F72400BEFD89 /* Core+Typealiases.swift */; };
 		A19838392642FAEC00BEFD89 /* ItemModuleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19838382642FAEC00BEFD89 /* ItemModuleProtocol.swift */; };
 		A1A7A053262B08F10011054A /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A7A052262B08F10011054A /* Configuration.swift */; };
+		A1B7A75A2646B2A600FF6105 /* RepositoryTypeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B7A7592646B2A600FF6105 /* RepositoryTypeProtocol.swift */; };
 		A1C65ECD263388760086A56E /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15EFFE6262CB6DC00C144F0 /* Logger.swift */; };
 		A1C65ED7263388C00086A56E /* DebugTools+Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C65ED6263388C00086A56E /* DebugTools+Typealiases.swift */; };
 		A1C65EE2263389050086A56E /* DebugTools+Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C65EE1263389050086A56E /* DebugTools+Typealiases.swift */; };
@@ -375,6 +376,7 @@
 		A19838362642F72400BEFD89 /* Core+Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core+Typealiases.swift"; sourceTree = "<group>"; };
 		A19838382642FAEC00BEFD89 /* ItemModuleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModuleProtocol.swift; sourceTree = "<group>"; };
 		A1A7A052262B08F10011054A /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		A1B7A7592646B2A600FF6105 /* RepositoryTypeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTypeProtocol.swift; sourceTree = "<group>"; };
 		A1C65ED6263388C00086A56E /* DebugTools+Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DebugTools+Typealiases.swift"; sourceTree = "<group>"; };
 		A1C65EE1263389050086A56E /* DebugTools+Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DebugTools+Typealiases.swift"; sourceTree = "<group>"; };
 		A1C65EE72633892C0086A56E /* DebugTools+Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DebugTools+Typealiases.swift"; sourceTree = "<group>"; };
@@ -1158,6 +1160,7 @@
 				A19838382642FAEC00BEFD89 /* ItemModuleProtocol.swift */,
 				A152B8B326431E6300059E21 /* ModuleLevel.swift */,
 				A1CEF3AD2642C31600BCB65B /* ModuleType.swift */,
+				A1B7A7592646B2A600FF6105 /* RepositoryTypeProtocol.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1892,6 +1895,7 @@
 			files = (
 				A1D157E12645E73000904477 /* CircleWithNumberModule.swift in Sources */,
 				A152B8B226430F9500059E21 /* ItemModuleAssembly.swift in Sources */,
+				A1B7A75A2646B2A600FF6105 /* RepositoryTypeProtocol.swift in Sources */,
 				A1C65EE82633892C0086A56E /* DebugTools+Typealiases.swift in Sources */,
 				A152B8B626432F1D00059E21 /* Rx+Typealiases.swift in Sources */,
 				A19838372642F72400BEFD89 /* Core+Typealiases.swift in Sources */,

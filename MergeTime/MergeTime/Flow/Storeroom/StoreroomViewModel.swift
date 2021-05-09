@@ -22,6 +22,7 @@ final class StoreroomViewModel {
     let checkDirectionItemIndexAction = PublishSubject<(cellPosition: CGPoint, itemPosition: CGPoint)>()
     
     let isRootContainerEnabled = BehaviorRelay<Bool>(value: false)
+    let currentSelectedItem = BehaviorRelay<ItemModuleProtocol?>(value: nil)
     
     private let content = BehaviorRelay<[ItemCollectionViewCellModel]?>(value: nil)
     private let disposeBag = DisposeBag()
@@ -32,6 +33,7 @@ final class StoreroomViewModel {
         self.model = model
         self.itemModuleAssembly = itemModuleAssembly
         content.accept(setupMockContent())
+        setupBinding()
     }
     
     func updateItems(indexes: (selectedItemIndex: Int?, directionItemIndex: Int?)) {
@@ -62,14 +64,32 @@ final class StoreroomViewModel {
                 return
             }
 
-            directItemModel.item.accept(itemModuleAssembly.nextLevel(for: selectedItem))
+            // new item need to be mark as selected and merged
+            let nextLevelItem = itemModuleAssembly.nextLevel(for: selectedItem)
+            nextLevelItem?.isSelected.accept(true)
+            nextLevelItem?.isMergedItem = true
+            
+            directItemModel.item.accept(nextLevelItem)
             selectedItemModel.item.accept(nil)
         } else {
 
             // handle merge with empty direct content
             directItemModel.item.accept(selectedItemModel.item.value)
             selectedItemModel.item.accept(nil)
+            
+            // moved item need to be mark as selected after dragging
+            directItemModel.item.value?.isSelected.accept(true)
         }
+    }
+    
+    private func setupBinding() {
+        // if root container enabled parameter is equal to false then need remove any selections state for any items
+        isRootContainerEnabled
+            .filter { !$0 }
+            .subscribe(onNext: { [weak currentSelectedItem] _ in
+                currentSelectedItem?.value?.isSelected.accept(false)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -96,6 +116,20 @@ extension StoreroomViewModel {
             isRootContainerEnabledObservable: isRootContainerEnabled
         )
         model.checkDirectionItemIndexAction.bind(to: checkDirectionItemIndexAction).disposed(by: model.disposeBag)
+        model.itemSelected
+            .subscribe(onNext: { [weak currentSelectedItem] newSelectedItem in
+                guard let value = currentSelectedItem?.value else {
+                    currentSelectedItem?.accept(newSelectedItem)
+                    
+                    return
+                }
+                
+                if !value.isSameObject(to: newSelectedItem) {
+                    currentSelectedItem?.value?.isSelected.accept(false)
+                    currentSelectedItem?.accept(newSelectedItem)
+                }
+            })
+            .disposed(by: model.disposeBag)
         
         return model
     }
