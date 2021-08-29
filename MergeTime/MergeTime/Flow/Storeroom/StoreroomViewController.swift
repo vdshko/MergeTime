@@ -43,7 +43,7 @@ extension StoreroomViewController {
                 let directionItemIndexPath = rootView?.itemsCollectionView.indexPathForItem(at: $0.itemPosition)
                 if let indexPath = directionItemIndexPath,
                    let cell = rootView?.itemsCollectionView.cellForItem(at: indexPath) {
-                    directPosition = cell.contentView.convert(CGPoint(x: -$0.cellPosition.x, y: -$0.cellPosition.y), to: cell.superview)
+                    directPosition = cell.contentView.convert($0.cellPosition.reverse, to: cell.superview)
                 }
                 
                 return DraggingOptions(

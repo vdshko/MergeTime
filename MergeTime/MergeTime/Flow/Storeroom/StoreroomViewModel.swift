@@ -86,7 +86,7 @@ final class StoreroomViewModel {
 private extension StoreroomViewModel {
     
     func setupBinding() {
-        // If rootContainerEnabled - parameter is equal to false then need remove any selections state for any items
+        // Don't need to show any item selection if root container not enabled
         isRootContainerEnabled
             .filter { !$0 }
             .subscribe(onNext: { [weak currentSelectedItem] _ in
@@ -103,14 +103,14 @@ private extension StoreroomViewModel {
     func mergeWithEmptyContent(selectedItemModel: ItemCollectionViewCellModel, directItemModel: ItemCollectionViewCellModel, directPosition: CGPoint) {
         selectedItemModel.item.value?.isSelected.accept(false)
         let completion = {
-            selectedItemModel.item.value?.isDragging.accept(false)
-            directItemModel.item.accept(selectedItemModel.item.value)
             selectedItemModel.item.accept(nil)
             
             // moved item need to be mark as selected after dragging
             directItemModel.item.value?.isSelected.accept(true)
         }
         selectedItemModel.item.value?.moveToDirectPositionAction.onNext((position: directPosition, completion: completion))
+        directItemModel.item.accept(selectedItemModel.item.value)
+        selectedItemModel.item.value?.isDragging.accept(false)
     }
 }
 
@@ -141,10 +141,10 @@ private extension StoreroomViewModel {
             .subscribe(onNext: { [weak currentSelectedItem] newSelectedItem in
                 guard let value = currentSelectedItem?.value else {
                     currentSelectedItem?.accept(newSelectedItem)
-                    
+
                     return
                 }
-                
+
                 if !value.isSameObject(to: newSelectedItem) {
                     currentSelectedItem?.value?.isSelected.accept(false)
                     currentSelectedItem?.accept(newSelectedItem)

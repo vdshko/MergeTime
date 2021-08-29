@@ -25,7 +25,6 @@ final class ItemCollectionViewCellModel {
     let disposeBag = DisposeBag()
     
     private var itemDisposeBag = DisposeBag()
-    private var isDragging: Bool = false
     
     private let isRootContainerEnabledObservable: BehaviorRelay<Bool>
     
@@ -113,9 +112,9 @@ final class ItemCollectionViewCellModel {
             })
             .disposed(by: itemDisposeBag)
         item.isSelected
-            .subscribe(onNext: { [weak changeHighlightedState, weak itemSelected] in
-                changeHighlightedState?.onNext($0)
-                if $0 {
+            .subscribe(onNext: { [weak changeHighlightedState, weak itemSelected] isSelected in
+                changeHighlightedState?.onNext(isSelected)
+                if isSelected {
                     itemSelected?.onNext(item)
                 }
             })
