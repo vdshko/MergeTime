@@ -8,4 +8,5 @@
 public enum ModuleType: Equatable {
     
     case squareWithNumber
+    case circleWithNumber
 }

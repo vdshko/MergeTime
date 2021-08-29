@@ -13,7 +13,7 @@ public final class Typography {
     
     public enum Style: CaseIterable {
         
-        case `default`, tabBarItem
+        case `default`, tabBarItem, tiny
     }
 }
 
@@ -23,6 +23,7 @@ public extension Typography.Style {
         switch self {
         case .default: return FontFamily.SFPro.regular.font(size: 18)
         case .tabBarItem: return FontFamily.SFPro.regular.font(size: 10)
+        case .tiny: return FontFamily.SFPro.semibold.font(size: 8)
         }
     }
 }
@@ -31,7 +32,7 @@ public extension Typography.Style {
     
     var lineHeightMultiple: CGFloat {
         switch self {
-        case .default, .tabBarItem: return 1.0
+        default: return 1.0
         }
     }
 }

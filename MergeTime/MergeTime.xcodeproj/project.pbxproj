@@ -82,6 +82,7 @@
 		A152B8B226430F9500059E21 /* ItemModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A152B8B126430F9500059E21 /* ItemModuleAssembly.swift */; };
 		A152B8B426431E6300059E21 /* ModuleLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A152B8B326431E6300059E21 /* ModuleLevel.swift */; };
 		A152B8B626432F1D00059E21 /* Rx+Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A152B8B526432F1D00059E21 /* Rx+Typealiases.swift */; };
+		A157E0E026482E6E0059B38E /* DraggingOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A157E0DF26482E6E0059B38E /* DraggingOptions.swift */; };
 		A15E4214262C68E30074980D /* Resources.h in Headers */ = {isa = PBXBuildFile; fileRef = A15E4212262C68E30074980D /* Resources.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A15E4217262C68E30074980D /* Resources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15E4210262C68E30074980D /* Resources.framework */; };
 		A15E4218262C68E30074980D /* Resources.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A15E4210262C68E30074980D /* Resources.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -103,6 +104,7 @@
 		A19838372642F72400BEFD89 /* Core+Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19838362642F72400BEFD89 /* Core+Typealiases.swift */; };
 		A19838392642FAEC00BEFD89 /* ItemModuleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19838382642FAEC00BEFD89 /* ItemModuleProtocol.swift */; };
 		A1A7A053262B08F10011054A /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A7A052262B08F10011054A /* Configuration.swift */; };
+		A1B7A75A2646B2A600FF6105 /* RepositoryTypeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B7A7592646B2A600FF6105 /* RepositoryTypeProtocol.swift */; };
 		A1C65ECD263388760086A56E /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15EFFE6262CB6DC00C144F0 /* Logger.swift */; };
 		A1C65ED7263388C00086A56E /* DebugTools+Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C65ED6263388C00086A56E /* DebugTools+Typealiases.swift */; };
 		A1C65EE2263389050086A56E /* DebugTools+Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C65EE1263389050086A56E /* DebugTools+Typealiases.swift */; };
@@ -117,6 +119,8 @@
 		A1CB2E4C263EDF1000E97764 /* ObservableType+Unwrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CB2E4B263EDF1000E97764 /* ObservableType+Unwrap.swift */; };
 		A1CEF3AE2642C31600BCB65B /* ModuleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CEF3AD2642C31600BCB65B /* ModuleType.swift */; };
 		A1CEF3B02642C45F00BCB65B /* ItemModules+Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CEF3AF2642C45F00BCB65B /* ItemModules+Typealiases.swift */; };
+		A1D157E12645E73000904477 /* CircleWithNumberModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D157E02645E73000904477 /* CircleWithNumberModule.swift */; };
+		A1D157E32645E73D00904477 /* CircleWithNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D157E22645E73D00904477 /* CircleWithNumberView.swift */; };
 		A1E0B732263DDE7500B8721C /* StoreroomFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E0B731263DDE7500B8721C /* StoreroomFlowCoordinator.swift */; };
 		A1E0B739263DDE8500B8721C /* StoreroomFlowAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E0B738263DDE8500B8721C /* StoreroomFlowAssembly.swift */; };
 		A1E0B745263DDFEB00B8721C /* StoreroomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E0B744263DDFEB00B8721C /* StoreroomViewController.swift */; };
@@ -345,6 +349,7 @@
 		A152B8B126430F9500059E21 /* ItemModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModuleAssembly.swift; sourceTree = "<group>"; };
 		A152B8B326431E6300059E21 /* ModuleLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleLevel.swift; sourceTree = "<group>"; };
 		A152B8B526432F1D00059E21 /* Rx+Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Typealiases.swift"; sourceTree = "<group>"; };
+		A157E0DF26482E6E0059B38E /* DraggingOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggingOptions.swift; sourceTree = "<group>"; };
 		A15E4210262C68E30074980D /* Resources.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Resources.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A15E4212262C68E30074980D /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Resources.h; sourceTree = "<group>"; };
 		A15E4213262C68E30074980D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -373,6 +378,7 @@
 		A19838362642F72400BEFD89 /* Core+Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core+Typealiases.swift"; sourceTree = "<group>"; };
 		A19838382642FAEC00BEFD89 /* ItemModuleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModuleProtocol.swift; sourceTree = "<group>"; };
 		A1A7A052262B08F10011054A /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		A1B7A7592646B2A600FF6105 /* RepositoryTypeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTypeProtocol.swift; sourceTree = "<group>"; };
 		A1C65ED6263388C00086A56E /* DebugTools+Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DebugTools+Typealiases.swift"; sourceTree = "<group>"; };
 		A1C65EE1263389050086A56E /* DebugTools+Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DebugTools+Typealiases.swift"; sourceTree = "<group>"; };
 		A1C65EE72633892C0086A56E /* DebugTools+Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DebugTools+Typealiases.swift"; sourceTree = "<group>"; };
@@ -387,6 +393,8 @@
 		A1CB2E4D263EECBA00E97764 /* ItemCollectionViewCell+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemCollectionViewCell+ViewModel.swift"; sourceTree = "<group>"; };
 		A1CEF3AD2642C31600BCB65B /* ModuleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleType.swift; sourceTree = "<group>"; };
 		A1CEF3AF2642C45F00BCB65B /* ItemModules+Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemModules+Typealiases.swift"; sourceTree = "<group>"; };
+		A1D157E02645E73000904477 /* CircleWithNumberModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleWithNumberModule.swift; sourceTree = "<group>"; };
+		A1D157E22645E73D00904477 /* CircleWithNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleWithNumberView.swift; sourceTree = "<group>"; };
 		A1E0B731263DDE7500B8721C /* StoreroomFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreroomFlowCoordinator.swift; sourceTree = "<group>"; };
 		A1E0B738263DDE8500B8721C /* StoreroomFlowAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreroomFlowAssembly.swift; sourceTree = "<group>"; };
 		A1E0B744263DDFEB00B8721C /* StoreroomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreroomViewController.swift; sourceTree = "<group>"; };
@@ -954,6 +962,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		A157E0DE26482E590059B38E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A157E0DF26482E6E0059B38E /* DraggingOptions.swift */,
+				A1E0B752263DE01400B8721C /* StoreroomModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A15E4211262C68E30074980D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1059,6 +1076,7 @@
 		A198382F2642F62500BEFD89 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				A1D157DF2645E6D900904477 /* CircleWithNumberModule */,
 				A19838322642F6B500BEFD89 /* SquareWithNumberModule */,
 			);
 			path = Modules;
@@ -1153,15 +1171,25 @@
 				A19838382642FAEC00BEFD89 /* ItemModuleProtocol.swift */,
 				A152B8B326431E6300059E21 /* ModuleLevel.swift */,
 				A1CEF3AD2642C31600BCB65B /* ModuleType.swift */,
+				A1B7A7592646B2A600FF6105 /* RepositoryTypeProtocol.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		A1D157DF2645E6D900904477 /* CircleWithNumberModule */ = {
+			isa = PBXGroup;
+			children = (
+				A1D157E02645E73000904477 /* CircleWithNumberModule.swift */,
+				A1D157E22645E73D00904477 /* CircleWithNumberView.swift */,
+			);
+			path = CircleWithNumberModule;
 			sourceTree = "<group>";
 		};
 		A1E0B72D263DDD7300B8721C /* Storeroom */ = {
 			isa = PBXGroup;
 			children = (
 				A1E0B730263DDE3B00B8721C /* Flow */,
-				A1E0B752263DE01400B8721C /* StoreroomModel.swift */,
+				A157E0DE26482E590059B38E /* Models */,
 				A1E0B744263DDFEB00B8721C /* StoreroomViewController.swift */,
 				A1E0B74B263DDFFF00B8721C /* StoreroomViewModel.swift */,
 				A1E0B759263DE01700B8721C /* Veiws */,
@@ -1759,6 +1787,7 @@
 				A138CC3C263E067400486070 /* RoadViewController.swift in Sources */,
 				A1E0B753263DE01400B8721C /* StoreroomModel.swift in Sources */,
 				A1C7CB45262C958700ACBB82 /* ApplicationFlowService.swift in Sources */,
+				A157E0E026482E6E0059B38E /* DraggingOptions.swift in Sources */,
 				A1C65ED7263388C00086A56E /* DebugTools+Typealiases.swift in Sources */,
 				A138CC35263E056200486070 /* RoadModel.swift in Sources */,
 				A116DFBC2633678B0095F03F /* NavigationEventDrivenProtocol.swift in Sources */,
@@ -1876,12 +1905,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1D157E12645E73000904477 /* CircleWithNumberModule.swift in Sources */,
 				A152B8B226430F9500059E21 /* ItemModuleAssembly.swift in Sources */,
+				A1B7A75A2646B2A600FF6105 /* RepositoryTypeProtocol.swift in Sources */,
 				A1C65EE82633892C0086A56E /* DebugTools+Typealiases.swift in Sources */,
 				A152B8B626432F1D00059E21 /* Rx+Typealiases.swift in Sources */,
 				A19838372642F72400BEFD89 /* Core+Typealiases.swift in Sources */,
 				A11B4F3226359E9600E77E32 /* Assets.swift in Sources */,
 				A19838312642F66800BEFD89 /* SquareWithNumberModule.swift in Sources */,
+				A1D157E32645E73D00904477 /* CircleWithNumberView.swift in Sources */,
 				A19838392642FAEC00BEFD89 /* ItemModuleProtocol.swift in Sources */,
 				A19838342642F6E300BEFD89 /* SquareWithNumberView.swift in Sources */,
 				A1CEF3AE2642C31600BCB65B /* ModuleType.swift in Sources */,

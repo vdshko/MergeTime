@@ -1,6 +1,8 @@
 // swiftlint:disable all
 
 extension L10n {
+  /// max level
+  public static let itemModuleMaxTitle = L10n.tr("Localizable", "item_module.max_title")
   /// Account
   public static let tabBarAccount = L10n.tr("Localizable", "tabBar.account")
   /// Road
