@@ -7,7 +7,7 @@
 
 import UIKit
 
-public final class RoadView: NiblessView {
+final class RoadView: NiblessView {
     
     init() {
         super.init(frame: UIScreen.main.bounds)

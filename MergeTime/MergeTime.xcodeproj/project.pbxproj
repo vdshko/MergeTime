@@ -14,6 +14,8 @@
 		A116DFC1263369860095F03F /* NavigationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A116DFC0263369860095F03F /* NavigationNode.swift */; };
 		A11B4EFE2635996900E77E32 /* MainFlowAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11B4EFD2635996900E77E32 /* MainFlowAssembly.swift */; };
 		A11B4F3226359E9600E77E32 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11B4F1A26359E0F00E77E32 /* Assets.swift */; };
+		A11DF06E26DBDCEA00C6144E /* CGPoint+Reverse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11DF06D26DBDCEA00C6144E /* CGPoint+Reverse.swift */; };
+		A11DF07026DBFA3400C6144E /* CGLayer+HighlightBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11DF06F26DBFA3400C6144E /* CGLayer+HighlightBorder.swift */; };
 		A1312B9A2634490700F3C9B4 /* Core.h in Headers */ = {isa = PBXBuildFile; fileRef = A1312B982634490700F3C9B4 /* Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1312B9D2634490700F3C9B4 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1312B962634490600F3C9B4 /* Core.framework */; };
 		A1312B9E2634490700F3C9B4 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1312B962634490600F3C9B4 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -261,6 +263,8 @@
 		A11B4EFD2635996900E77E32 /* MainFlowAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowAssembly.swift; sourceTree = "<group>"; };
 		A11B4F0426359A6C00E77E32 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A11B4F1A26359E0F00E77E32 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		A11DF06D26DBDCEA00C6144E /* CGPoint+Reverse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Reverse.swift"; sourceTree = "<group>"; };
+		A11DF06F26DBFA3400C6144E /* CGLayer+HighlightBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGLayer+HighlightBorder.swift"; sourceTree = "<group>"; };
 		A1312B962634490600F3C9B4 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1312B982634490700F3C9B4 /* Core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Core.h; sourceTree = "<group>"; };
 		A1312B992634490700F3C9B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -999,7 +1003,9 @@
 		A1752AEA2634DEDC0086BAE6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A11DF06D26DBDCEA00C6144E /* CGPoint+Reverse.swift */,
 				A1752AEB2634DEFC0086BAE6 /* Resolver+Autoresolve.swift */,
+				A11DF06F26DBFA3400C6144E /* CGLayer+HighlightBorder.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1668,7 +1674,9 @@
 				A138CC37263E05D000486070 /* RoadViewModel.swift in Sources */,
 				A181422B26DB7ECF00F470B3 /* RoadView.swift in Sources */,
 				A138CC4D263E0C0900486070 /* AccountFlowAssembly.swift in Sources */,
+				A11DF07026DBFA3400C6144E /* CGLayer+HighlightBorder.swift in Sources */,
 				A106B49C2629D47000F82551 /* AppDelegate.swift in Sources */,
+				A11DF06E26DBDCEA00C6144E /* CGPoint+Reverse.swift in Sources */,
 				A1E0B739263DDE8500B8721C /* StoreroomFlowAssembly.swift in Sources */,
 				A13CA6C426442FE400D66DA0 /* ItemCollectionViewCellModel.swift in Sources */,
 				A1E0B745263DDFEB00B8721C /* StoreroomViewController.swift in Sources */,

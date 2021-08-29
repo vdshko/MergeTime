@@ -29,11 +29,11 @@ public final class StoreroomView: NiblessView {
             removeCollectionViewScrollIndicators()
         }
     }
-    
-    private func removeCollectionViewScrollIndicators() {
-        itemsCollectionView.subviews.last?.removeFromSuperview()
-        itemsCollectionView.subviews.last?.removeFromSuperview()
-    }
+}
+
+// MARK: - Internals
+
+extension StoreroomView {
     
     private func layout() {
         addSubview(itemsCollectionView)
@@ -44,5 +44,10 @@ public final class StoreroomView: NiblessView {
             $0.top.equal(to: safeAreaLayoutGuide.topAnchor, offsetBy: ItemCollectionViewCell.Constants.itemsMargin)
             $0.bottom.equal(to: safeAreaLayoutGuide.bottomAnchor, offsetBy: -ItemCollectionViewCell.Constants.itemsMargin)
         }
+    }
+    
+    private func removeCollectionViewScrollIndicators() {
+        itemsCollectionView.subviews.last?.removeFromSuperview()
+        itemsCollectionView.subviews.last?.removeFromSuperview()
     }
 }

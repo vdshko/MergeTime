@@ -9,12 +9,11 @@ import UIKit
 
 final class CircleWithNumberView: NiblessView {
     
-    let label: UILabel = Factory.label()
+    private let label: UILabel = Factory.label()
         .textColor(Asset.Colors.Background.primary)
         .textAlignment(.center)
         .font(typography: .default)
         .build()
-    
     private let backgroundView: UIView = Factory.view()
         .background(Asset.Colors.Standard.white, alpha: 0.7)
         .border(color: Asset.Colors.Background.primary, width: 1)
@@ -65,8 +64,8 @@ final class CircleWithNumberView: NiblessView {
         backgroundView.addSubview(maxLebel)
         maxLebel.layout {
             $0.centerY.equal(to: label.centerYAnchor, offsetBy: 14)
-            $0.trailing.equal(to: trailingAnchor)
-            $0.leading.equal(to: leadingAnchor)
+            $0.trailing.equal(to: backgroundView.trailingAnchor)
+            $0.leading.equal(to: backgroundView.leadingAnchor)
         }
     }
 }

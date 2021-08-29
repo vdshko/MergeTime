@@ -7,9 +7,4 @@
 
 enum StoreroomEvent: NavigationEvent {}
 
-final class StoreroomModel: NavigationNode {
-    
-    override init(parent: NavigationNode?) {
-        super.init(parent: parent)
-    }
-}
+final class StoreroomModel: NavigationNode {}

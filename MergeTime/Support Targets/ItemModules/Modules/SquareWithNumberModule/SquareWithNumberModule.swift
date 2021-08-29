@@ -24,7 +24,7 @@ final class SquareWithNumberModule: ItemModuleProtocol, RepositoryTypeProtocol {
     
     init(level: ModuleLevel) {
         moduleLevel = min(level, maxLevel)
-        self.view = SquareWithNumberView(with: moduleLevel.rawValue, isMaxLevel: moduleLevel == maxLevel)
+        view = SquareWithNumberView(with: moduleLevel.rawValue, isMaxLevel: moduleLevel == maxLevel)
     }
     
     func canEmitItems() -> Bool {

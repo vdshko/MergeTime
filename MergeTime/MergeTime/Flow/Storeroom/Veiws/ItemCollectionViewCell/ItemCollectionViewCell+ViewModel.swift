@@ -8,7 +8,7 @@
 extension ItemCollectionViewCell {
     
     func setup(with model: ItemCollectionViewCellModel, isEvenNumber: Bool) {
-        setupStyling(isEvenNumberCell: isEvenNumber)
+        updateBackground(isEvenNumberCell: isEvenNumber)
         model.updateCellWithOptionsObservable.call(self, type(of: self).updateCell).disposed(by: disposeBag)
         model.moveViewToPositionObservable.call(self, type(of: self).moveViewToPosition).disposed(by: disposeBag)
         model.bringCellToFrontObservable.call(self, type(of: self).bringCellToFront).disposed(by: disposeBag)

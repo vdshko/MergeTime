@@ -21,6 +21,11 @@ final class StoreroomViewController: ViewController<StoreroomView> {
         
         setupBindings()
     }
+}
+
+// MARK: - Internals
+
+extension StoreroomViewController {
     
     private func setupBindings() {
         rootView.itemsCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
@@ -38,7 +43,7 @@ final class StoreroomViewController: ViewController<StoreroomView> {
                 let directionItemIndexPath = rootView?.itemsCollectionView.indexPathForItem(at: $0.itemPosition)
                 if let indexPath = directionItemIndexPath,
                    let cell = rootView?.itemsCollectionView.cellForItem(at: indexPath) {
-                    directPosition = cell.contentView.convert(CGPoint(x: -$0.cellPosition.x, y: -$0.cellPosition.y), to: cell.superview)
+                    directPosition = cell.contentView.convert($0.cellPosition.reverse, to: cell.superview)
                 }
                 
                 return DraggingOptions(
@@ -49,7 +54,9 @@ final class StoreroomViewController: ViewController<StoreroomView> {
             }
             .call(viewModel, type(of: viewModel).updateItems)
             .disposed(by: disposeBag)
-        viewModel.isRootContainerEnabledObservable.bind(to: rootView.itemsCollectionView.rx.isUserInteractionEnabled).disposed(by: disposeBag)
+        viewModel.isRootContainerEnabledObservable
+            .bind(to: rootView.itemsCollectionView.rx.isUserInteractionEnabled)
+            .disposed(by: disposeBag)
     }
 }
 
