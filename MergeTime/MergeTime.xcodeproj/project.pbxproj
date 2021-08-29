@@ -96,6 +96,7 @@
 		A181422B26DB7ECF00F470B3 /* RoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A138CC39263E063000486070 /* RoadView.swift */; };
 		A181422C26DB7EEB00F470B3 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A138CC43263E0A1600486070 /* AccountView.swift */; };
 		A181422D26DB7EFC00F470B3 /* StoreroomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E0B75A263DE02B00B8721C /* StoreroomView.swift */; };
+		A181423026DB857500F470B3 /* UIView+ApplyShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A181422F26DB857500F470B3 /* UIView+ApplyShadow.swift */; };
 		A19838312642F66800BEFD89 /* SquareWithNumberModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19838302642F66800BEFD89 /* SquareWithNumberModule.swift */; };
 		A19838342642F6E300BEFD89 /* SquareWithNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19838332642F6E300BEFD89 /* SquareWithNumberView.swift */; };
 		A19838372642F72400BEFD89 /* Core+Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19838362642F72400BEFD89 /* Core+Typealiases.swift */; };
@@ -341,6 +342,7 @@
 		A1752ADE2634DC2B0086BAE6 /* ApplicationFlowAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationFlowAssembly.swift; sourceTree = "<group>"; };
 		A1752AEB2634DEFC0086BAE6 /* Resolver+Autoresolve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resolver+Autoresolve.swift"; sourceTree = "<group>"; };
 		A177939A2635DE28005BE742 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
+		A181422F26DB857500F470B3 /* UIView+ApplyShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ApplyShadow.swift"; sourceTree = "<group>"; };
 		A19838302642F66800BEFD89 /* SquareWithNumberModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareWithNumberModule.swift; sourceTree = "<group>"; };
 		A19838332642F6E300BEFD89 /* SquareWithNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareWithNumberView.swift; sourceTree = "<group>"; };
 		A19838362642F72400BEFD89 /* Core+Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core+Typealiases.swift"; sourceTree = "<group>"; };
@@ -521,7 +523,7 @@
 		A106B49A2629D47000F82551 /* MergeTime */ = {
 			isa = PBXGroup;
 			children = (
-				A109C3C1262BB3C60029B661 /* AppDelegate */,
+				A181422E26DB83C900F470B3 /* Wireframe */,
 				A15EFFE5262CB6B400C144F0 /* Common */,
 				A109C3C2262BB3E70029B661 /* Flow */,
 				A109C3B2262BB2720029B661 /* Supporting Files */,
@@ -583,8 +585,6 @@
 			isa = PBXGroup;
 			children = (
 				A1E0B72F263DDDDF00B8721C /* Account */,
-				A1C7CB69262C9A5A00ACBB82 /* Application */,
-				A1C7CB6A262C9A8400ACBB82 /* Main */,
 				A1E0B72E263DDDD500B8721C /* Road */,
 				A1E0B72D263DDD7300B8721C /* Storeroom */,
 			);
@@ -818,6 +818,7 @@
 				A1312C712634502600F3C9B4 /* UIView+ReactiveHiddenAnimated.swift */,
 				A1312C702634502600F3C9B4 /* UIViewController+PullToRefreshable.swift */,
 				A1312C742634502600F3C9B4 /* UIViewController+RxLifecycle.swift */,
+				A181422F26DB857500F470B3 /* UIView+ApplyShadow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1001,6 +1002,16 @@
 				A1752AEB2634DEFC0086BAE6 /* Resolver+Autoresolve.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A181422E26DB83C900F470B3 /* Wireframe */ = {
+			isa = PBXGroup;
+			children = (
+				A109C3C1262BB3C60029B661 /* AppDelegate */,
+				A1C7CB69262C9A5A00ACBB82 /* Application */,
+				A1C7CB6A262C9A8400ACBB82 /* Main */,
+			);
+			path = Wireframe;
 			sourceTree = "<group>";
 		};
 		A198382F2642F62500BEFD89 /* Modules */ = {
@@ -1692,6 +1703,7 @@
 				A1312CC02634502700F3C9B4 /* UITableView+Reusable.swift in Sources */,
 				A1312BE726344A4500F3C9B4 /* UIViewController+DisposeBag.swift in Sources */,
 				A1312CA02634502700F3C9B4 /* UIFactory.swift in Sources */,
+				A181423026DB857500F470B3 /* UIView+ApplyShadow.swift in Sources */,
 				A1312C9E2634502700F3C9B4 /* ImageViewFactory.swift in Sources */,
 				A1312CAF2634502700F3C9B4 /* UIViewController+PullToRefreshable.swift in Sources */,
 				A1312C9F2634502700F3C9B4 /* ScrollViewFactory.swift in Sources */,
