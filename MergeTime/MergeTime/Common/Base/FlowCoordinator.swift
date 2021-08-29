@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import class UI.NavigationController
+import class Core.NavigationController
 
 public protocol FlowCoordinator: AnyObject {
     

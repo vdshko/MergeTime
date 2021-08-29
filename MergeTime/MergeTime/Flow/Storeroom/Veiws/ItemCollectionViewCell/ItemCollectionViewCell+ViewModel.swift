@@ -5,8 +5,6 @@
 //  Created by Vlad Shkodich on 02.05.2021.
 //
 
-import class UI.ItemCollectionViewCell
-
 extension ItemCollectionViewCell {
     
     func setup(with model: ItemCollectionViewCellModel, isEvenNumber: Bool) {

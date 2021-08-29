@@ -5,7 +5,7 @@
 //  Created by Vlad Shkodich on 01.05.2021.
 //
 
-import UI
+import class Core.ViewController
 import UIKit
 
 final class StoreroomViewController: ViewController<StoreroomView> {

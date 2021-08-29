@@ -7,7 +7,6 @@
 
 import Swinject
 import SwinjectAutoregistration
-import class UI.TabBarController
 
 final class MainFlowAssembly: Assembly {
     

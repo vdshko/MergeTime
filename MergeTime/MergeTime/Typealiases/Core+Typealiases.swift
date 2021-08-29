@@ -1,8 +1,8 @@
 //
 //  Core+Typealiases.swift
-//  UI
+//  MergeTime
 //
-//  Created by Vlad Shkodich on 24.04.2021.
+//  Created by Vlad Shkodich on 29.08.2021.
 //
 
 import Core

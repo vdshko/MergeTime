@@ -6,7 +6,6 @@
 //
 
 import Swinject
-import class UI.TabBarController
 
 final class MainFlowCoordinator: NavigationFlowCoordinator {
     

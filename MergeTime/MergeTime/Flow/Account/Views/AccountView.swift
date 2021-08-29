@@ -1,6 +1,6 @@
 //
 //  AccountView.swift
-//  UI
+//  MergeTime
 //
 //  Created by Vlad Shkodich on 02.05.2021.
 //

@@ -26,11 +26,6 @@ target 'MergeTime' do
   swinject
 end
 
-target 'UI' do
-  
-  rx_swift
-end
-
 target 'Core' do
   
   rx_swift

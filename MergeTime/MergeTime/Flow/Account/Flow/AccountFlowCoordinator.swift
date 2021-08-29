@@ -6,7 +6,7 @@
 //
 
 import Swinject
-import class UI.NavigationController
+import class Core.NavigationController
 
 final class AccountFlowCoordinator: NavigationFlowCoordinator {
     

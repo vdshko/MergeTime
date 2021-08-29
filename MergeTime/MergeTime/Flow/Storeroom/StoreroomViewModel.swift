@@ -119,7 +119,7 @@ extension StoreroomViewModel {
         ]
     }
     
-    private func addMock(isNil: Bool = true, level: ModuleLevel = .one, moduleType: ModuleType = .squareWithNumber) -> ItemCollectionViewCellModel {
+    private func addMock(isNil: Bool = false, level: ModuleLevel = .one, moduleType: ModuleType = .squareWithNumber) -> ItemCollectionViewCellModel {
         let model = ItemCollectionViewCellModel(
             item: isNil ? nil : itemModuleAssembly.module(type: moduleType, level: level),
             isRootContainerEnabledObservable: isRootContainerEnabled

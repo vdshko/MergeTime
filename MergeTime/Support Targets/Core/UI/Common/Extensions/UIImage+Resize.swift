@@ -1,6 +1,6 @@
 //
 //  UIImage+Resize.swift
-//  UI
+//  Core
 //
 //  Created by Vlad Shkodich on 25.04.2021.
 //

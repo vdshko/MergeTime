@@ -1,6 +1,6 @@
 //
 //  TabBarController.swift
-//  UI
+//  MergeTime
 //
 //  Created by Vlad Shkodich on 25.04.2021.
 //
