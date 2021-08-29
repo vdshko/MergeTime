@@ -7,7 +7,7 @@
 
 import UIKit
 
-public final class AccountView: NiblessView {
+final class AccountView: NiblessView {
     
     init() {
         super.init(frame: UIScreen.main.bounds)

@@ -49,7 +49,9 @@ final class StoreroomViewController: ViewController<StoreroomView> {
             }
             .call(viewModel, type(of: viewModel).updateItems)
             .disposed(by: disposeBag)
-        viewModel.isRootContainerEnabledObservable.bind(to: rootView.itemsCollectionView.rx.isUserInteractionEnabled).disposed(by: disposeBag)
+        viewModel.isRootContainerEnabledObservable
+            .bind(to: rootView.itemsCollectionView.rx.isUserInteractionEnabled)
+            .disposed(by: disposeBag)
     }
 }
 
