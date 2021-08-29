@@ -21,6 +21,11 @@ final class StoreroomViewController: ViewController<StoreroomView> {
         
         setupBindings()
     }
+}
+
+// MARK: - Internals
+
+extension StoreroomViewController {
     
     private func setupBindings() {
         rootView.itemsCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
