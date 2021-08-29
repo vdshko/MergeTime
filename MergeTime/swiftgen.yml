@@ -1,0 +1,41 @@
+xcassets:
+  - inputs:
+    - Support Targets/Resources/xcassets/Assets.xcassets
+    - Support Targets/Resources/xcassets/Colors.xcassets
+    outputs:
+      templatePath: Support Targets/Resources/Swiftgen/Stencils/xcassets
+      output: Support Targets/Resources/Swiftgen/Assets.swift
+      params:
+        publicAccess: true
+  - inputs:
+    - MergeTime/Supporting Files/Resources/xcassets/AppAssets.xcassets
+    outputs:
+      templatePath: Support Targets/Resources/Swiftgen/Stencils/xcassets
+      output: MergeTime/Supporting Files/Resources/Swiftgen/Assets.swift
+      params:
+        publicAccess: true
+  - inputs:
+    - Support Targets/ItemModules/Supporting Files/Resources/xcassets/ItemsAssets.xcassets
+    outputs:
+      templatePath: Support Targets/Resources/Swiftgen/Stencils/xcassets
+      output: Support Targets/ItemModules/Supporting Files/Resources/Swiftgen/Assets.swift
+      params:
+        publicAccess: true
+
+strings:
+  - inputs:
+    - Support Targets/Resources/Localization/en.lproj/Localizable.strings
+    outputs:
+      output: Support Targets/Resources/Swiftgen/Strings.swift
+      templatePath: Support Targets/Resources/Swiftgen/Stencils/strings
+      params:
+        publicAccess: true
+
+fonts:
+  - inputs:
+    - Support Targets/Resources/Fonts
+    outputs:
+      output: Support Targets/Resources/Swiftgen/Fonts.swift
+      templateName: swift5
+      params:
+        publicAccess: true

@@ -1,0 +1,14 @@
+//
+//  Release.xcconfig
+//  MergeTime
+//
+//  Created by Vlad Shkodich on 17.04.2021.
+//
+
+#include "../Accounts/OwnAccount.xcconfig"
+
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) $(BUILD_COMPILATION_CONDITIONS)
+
+ONLY_ACTIVE_ARCH = NO
+
+DEBUG_INFORMATION_FORMAT=dwarf-with-dsym
