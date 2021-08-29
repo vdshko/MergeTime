@@ -40,6 +40,12 @@ public final class TabBarController: UITabBarController {
         tabBar.layer.shadowColor = Asset.Colors.Text.primary.color.cgColorDynamic
     }
     
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        tabBar.applyShadow(color: Asset.Colors.Text.primary, y: -1)
+    }
+    
     public func select(tab: TabBarController.Items) {
         selectedIndex = tab.rawValue
     }
@@ -48,10 +54,6 @@ public final class TabBarController: UITabBarController {
         UITabBar.appearance().shadowImage = UIImage()
         UITabBar.appearance().backgroundImage = UIImage()
         tabBar.backgroundColor = Asset.Colors.Background.primary.color
-        tabBar.layer.shadowOffset = CGSize(width: 0, height: 0)
-        tabBar.layer.shadowRadius = 4
-        tabBar.layer.shadowOpacity = 1
-        tabBar.layer.shadowColor = Asset.Colors.Text.primary.color.cgColorDynamic
     }
     
     private func setupItems() {
