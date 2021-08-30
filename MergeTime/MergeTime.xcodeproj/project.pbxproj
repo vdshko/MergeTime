@@ -132,6 +132,8 @@
 		A1EC1305263384420076743A /* ItemModules.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1EC12FD263384420076743A /* ItemModules.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A1EC1322263384D90076743A /* ItemsAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A15E4265262C73FE0074980D /* ItemsAssets.xcassets */; };
 		A1FC615326DD7E750023606B /* InformationPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC615226DD7E750023606B /* InformationPanelView.swift */; };
+		A1FC615926DD80860023606B /* InformationPanelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC615826DD80860023606B /* InformationPanelViewModel.swift */; };
+		A1FC615B26DD80A30023606B /* InformationPanelView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC615A26DD80A30023606B /* InformationPanelView+ViewModel.swift */; };
 		CF18274B42C549CC1BF499ED /* Pods_MergeTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E753ABD5CD669554DBFC620E /* Pods_MergeTime.framework */; };
 		DF1CA2B238C6CB223196E7AF /* Pods_ItemModules.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B14AA0DCE15F712B7F6B5C42 /* Pods_ItemModules.framework */; };
 		E238DB9729650087AC14B264 /* Pods_Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45072163F52D7E7F00E12B13 /* Pods_Core.framework */; };
@@ -382,6 +384,8 @@
 		A1EC12FF263384420076743A /* ItemModules.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemModules.h; sourceTree = "<group>"; };
 		A1EC1300263384420076743A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1FC615226DD7E750023606B /* InformationPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationPanelView.swift; sourceTree = "<group>"; };
+		A1FC615826DD80860023606B /* InformationPanelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationPanelViewModel.swift; sourceTree = "<group>"; };
+		A1FC615A26DD80A30023606B /* InformationPanelView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InformationPanelView+ViewModel.swift"; sourceTree = "<group>"; };
 		A9597D8AF695180895D3243F /* Pods-MergeTime.production-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MergeTime.production-debug.xcconfig"; path = "Target Support Files/Pods-MergeTime/Pods-MergeTime.production-debug.xcconfig"; sourceTree = "<group>"; };
 		B14AA0DCE15F712B7F6B5C42 /* Pods_ItemModules.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ItemModules.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B18DE3B2910B2F8CCD0646BC /* Pods-MergeTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MergeTime.debug.xcconfig"; path = "Target Support Files/Pods-MergeTime/Pods-MergeTime.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1230,7 +1234,7 @@
 		A1FC615526DD7E980023606B /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				A1FC615226DD7E750023606B /* InformationPanelView.swift */,
+				A1FC615726DD80780023606B /* InformationPanel */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1244,6 +1248,16 @@
 				A1E0B759263DE01700B8721C /* Veiws */,
 			);
 			path = StoreroomScreen;
+			sourceTree = "<group>";
+		};
+		A1FC615726DD80780023606B /* InformationPanel */ = {
+			isa = PBXGroup;
+			children = (
+				A1FC615226DD7E750023606B /* InformationPanelView.swift */,
+				A1FC615A26DD80A30023606B /* InformationPanelView+ViewModel.swift */,
+				A1FC615826DD80860023606B /* InformationPanelViewModel.swift */,
+			);
+			path = InformationPanel;
 			sourceTree = "<group>";
 		};
 		D4CA155485FCF5215B1BDECB /* Frameworks */ = {
@@ -1674,6 +1688,7 @@
 				A1C7CB45262C958700ACBB82 /* ApplicationFlowService.swift in Sources */,
 				A157E0E026482E6E0059B38E /* DraggingOptions.swift in Sources */,
 				A1C65ED7263388C00086A56E /* DebugTools+Typealiases.swift in Sources */,
+				A1FC615B26DD80A30023606B /* InformationPanelView+ViewModel.swift in Sources */,
 				A181422D26DB7EFC00F470B3 /* StoreroomView.swift in Sources */,
 				A138CC35263E056200486070 /* RoadModel.swift in Sources */,
 				A116DFBC2633678B0095F03F /* NavigationEventDrivenProtocol.swift in Sources */,
@@ -1694,6 +1709,7 @@
 				A181422B26DB7ECF00F470B3 /* RoadView.swift in Sources */,
 				A138CC4D263E0C0900486070 /* AccountFlowAssembly.swift in Sources */,
 				A11DF07026DBFA3400C6144E /* CGLayer+HighlightBorder.swift in Sources */,
+				A1FC615926DD80860023606B /* InformationPanelViewModel.swift in Sources */,
 				A106B49C2629D47000F82551 /* AppDelegate.swift in Sources */,
 				A11DF06E26DBDCEA00C6144E /* CGPoint+Reverse.swift in Sources */,
 				A1E0B739263DDE8500B8721C /* StoreroomFlowAssembly.swift in Sources */,
