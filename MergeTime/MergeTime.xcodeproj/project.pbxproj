@@ -131,6 +131,7 @@
 		A1EC1304263384420076743A /* ItemModules.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1EC12FD263384420076743A /* ItemModules.framework */; };
 		A1EC1305263384420076743A /* ItemModules.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1EC12FD263384420076743A /* ItemModules.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A1EC1322263384D90076743A /* ItemsAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A15E4265262C73FE0074980D /* ItemsAssets.xcassets */; };
+		A1FC615326DD7E750023606B /* InformationPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC615226DD7E750023606B /* InformationPanelView.swift */; };
 		CF18274B42C549CC1BF499ED /* Pods_MergeTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E753ABD5CD669554DBFC620E /* Pods_MergeTime.framework */; };
 		DF1CA2B238C6CB223196E7AF /* Pods_ItemModules.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B14AA0DCE15F712B7F6B5C42 /* Pods_ItemModules.framework */; };
 		E238DB9729650087AC14B264 /* Pods_Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45072163F52D7E7F00E12B13 /* Pods_Core.framework */; };
@@ -380,6 +381,7 @@
 		A1EC12FD263384420076743A /* ItemModules.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ItemModules.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1EC12FF263384420076743A /* ItemModules.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemModules.h; sourceTree = "<group>"; };
 		A1EC1300263384420076743A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1FC615226DD7E750023606B /* InformationPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationPanelView.swift; sourceTree = "<group>"; };
 		A9597D8AF695180895D3243F /* Pods-MergeTime.production-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MergeTime.production-debug.xcconfig"; path = "Target Support Files/Pods-MergeTime/Pods-MergeTime.production-debug.xcconfig"; sourceTree = "<group>"; };
 		B14AA0DCE15F712B7F6B5C42 /* Pods_ItemModules.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ItemModules.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B18DE3B2910B2F8CCD0646BC /* Pods-MergeTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MergeTime.debug.xcconfig"; path = "Target Support Files/Pods-MergeTime/Pods-MergeTime.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1126,11 +1128,9 @@
 		A1E0B72D263DDD7300B8721C /* Storeroom */ = {
 			isa = PBXGroup;
 			children = (
+				A1FC615526DD7E980023606B /* Components */,
 				A1E0B730263DDE3B00B8721C /* Flow */,
-				A157E0DE26482E590059B38E /* Models */,
-				A1E0B744263DDFEB00B8721C /* StoreroomViewController.swift */,
-				A1E0B74B263DDFFF00B8721C /* StoreroomViewModel.swift */,
-				A1E0B759263DE01700B8721C /* Veiws */,
+				A1FC615626DD7EEE0023606B /* StoreroomScreen */,
 			);
 			path = Storeroom;
 			sourceTree = "<group>";
@@ -1225,6 +1225,25 @@
 				A1C7CB1F262C825300ACBB82 /* Typealiases */,
 			);
 			path = ItemModules;
+			sourceTree = "<group>";
+		};
+		A1FC615526DD7E980023606B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A1FC615226DD7E750023606B /* InformationPanelView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A1FC615626DD7EEE0023606B /* StoreroomScreen */ = {
+			isa = PBXGroup;
+			children = (
+				A157E0DE26482E590059B38E /* Models */,
+				A1E0B744263DDFEB00B8721C /* StoreroomViewController.swift */,
+				A1E0B74B263DDFFF00B8721C /* StoreroomViewModel.swift */,
+				A1E0B759263DE01700B8721C /* Veiws */,
+			);
+			path = StoreroomScreen;
 			sourceTree = "<group>";
 		};
 		D4CA155485FCF5215B1BDECB /* Frameworks */ = {
@@ -1686,6 +1705,7 @@
 				A181422C26DB7EEB00F470B3 /* AccountView.swift in Sources */,
 				A15EFFF0262CB6DC00C144F0 /* FlowCoordinator.swift in Sources */,
 				A138CC4F263E0DF600486070 /* AccountFlowCoordinator.swift in Sources */,
+				A1FC615326DD7E750023606B /* InformationPanelView.swift in Sources */,
 				A138CC41263E075F00486070 /* RoadFlowCoordinator.swift in Sources */,
 				A138CC48263E0B4100486070 /* AccountViewModel.swift in Sources */,
 				A1E0B732263DDE7500B8721C /* StoreroomFlowCoordinator.swift in Sources */,
